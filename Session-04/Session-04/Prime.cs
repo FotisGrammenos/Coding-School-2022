@@ -27,7 +27,7 @@ namespace Session_04
                     {
                         isPrime = false;
                         //den to di3ame sto mathima alla to break einai meros (kata kapoion tropo) ton Iterations 
-                        break;
+                        //break;
                     }
                 }
                 if(isPrime)
