@@ -20,7 +20,7 @@ namespace Session_05
         public void ReadAll()
         {
             for (int i = 0; i < _indexOfMessges; i++)
-            {
+            { 
                 Console.WriteLine($" ID : {Messages[i].ID}, Time Stamp : {Messages[i].TimeStamp}, Message :{Messages[i].message}");
             }
         }
@@ -30,6 +30,7 @@ namespace Session_05
             try
             {
                 Messages[_indexOfMessges] = null;
+                _indexOfMessges--;
             }
             catch (Exception ex)
             {

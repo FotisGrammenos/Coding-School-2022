@@ -16,6 +16,7 @@ namespace Session_05
 
         public override ActionResponse Execute(ActionRequest actionRequest)
         {
+            _helperMessage = new Message();
             var response = new ActionResponse();
             try
             {
@@ -36,14 +37,14 @@ namespace Session_05
                         _helperMessage.message += $" RequestID : {response.ResponseID}, Request Output {response.Output}\n";
                         break;
                     default:
-                        _helperMessage.message+="Error, the num value of the INPUT is not right, please try again";
+                        _helperMessage.message+="Error, the num value of the INPUT is not right, please try again\n";
                         break;
                 }
 
             }
             catch (Exception ex)
             {
-                _helperMessage.message+=ex.ToString();
+                _helperMessage.message+=ex.ToString() +"\n";
             }
             Logger.Write(_helperMessage);
             return response;
