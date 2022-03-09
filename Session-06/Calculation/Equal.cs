@@ -18,13 +18,14 @@ namespace Calculation
         {
             Operators tmpOperators;
             string[] Op=ConvertStringToOperators();
+            //double result;
             for (int i = 0; i < Op.Length; i++)
             {
                 switch (Op[i])
                 {
                     case "+":
                         tmpOperators = new Add();
-                        numbers[i + 1] = tmpOperators.ExecuteOperators(numbers[i], numbers[i + 1]);
+                        numbers[i +1] = tmpOperators.ExecuteOperators(numbers[i], numbers[i + 1]);
                         break;
                     case "*":
                         tmpOperators = new Multiplication();
@@ -44,8 +45,8 @@ namespace Calculation
                         break;
                     case "√":
                         tmpOperators = new Root();
-                        numbers[i+1] = tmpOperators.ExecuteOperators(numbers[i],0);
-                        break;
+                        numbers[numbers.Length - 1] = tmpOperators.ExecuteOperators(numbers[i],0);
+                        break; 
                 }
                 
             }
@@ -80,12 +81,13 @@ namespace Calculation
 
         private double[] StringArrayToDecimalArray(string[] mystrings)
         {
-            double[] result = new double[mystrings.Length];
-            for (int i = 0; i < mystrings.Length; i++)
-            {
-                result[i] = double.Parse(mystrings[i]);
-            }
-            return result;
+            
+          double[] result = new double[mystrings.Length];
+          for (int i = 0; i < mystrings.Length; i++)
+          {
+                double.TryParse(mystrings[i],out result[i]);
+          }
+          return result;
         }
 
         private string[] ConvertStringToOperators()
