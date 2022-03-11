@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Session_07
 {
     public enum FormType
     {
-        UniversityForm,
         ProfessorForm,
         StudentForm,
         ScheduleForm,
@@ -21,85 +21,53 @@ namespace Session_07
     }
     public partial class MainForm : Form
     {
-
+        private MenuActionHandler _myHandler;
         public MainForm()
         {
             InitializeComponent();
+            _myHandler = new MenuActionHandler();
+            this.Text = _myHandler.GetunirvsityName();
         }
 
         #region MenuActions
-        private void universityToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CreateTheRightForm(FormType.UniversityForm);
-        }
-
         private void professorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateTheRightForm(FormType.ProfessorForm);
+            _myHandler.CreateTheRightForm(FormType.ProfessorForm);
         }
         private void studentToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateTheRightForm(FormType.StudentForm);
+            _myHandler.CreateTheRightForm(FormType.StudentForm);
         }
 
         private void courseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateTheRightForm(FormType.CourseForm);
+            _myHandler.CreateTheRightForm(FormType.CourseForm);
         }
 
         private void gradeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateTheRightForm(FormType.GradeForm);
+            _myHandler.CreateTheRightForm(FormType.GradeForm);
         }
 
         private void scheduleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateTheRightForm(FormType.ScheduleForm);
+            _myHandler.CreateTheRightForm(FormType.ScheduleForm);
         }
 
         //TODO: ftia3e autes tis sinartiseis oste an apothikeuei
         //kai na kanei load arxeia Json
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            _myHandler.ExecuteSave();   
         }
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            _myHandler.ExecuteLoad();
         }
         # endregion
 
-        private void CreateTheRightForm(FormType myType)
-        {
-            Form newForm;
-            switch (myType)
-            {
-                case FormType.UniversityForm:
-                    newForm = new UniversityForm();
-                    break;
-                case FormType.ProfessorForm:
-                    newForm = new ProfessorForm();
-                    break;
-                case FormType.StudentForm:
-                    newForm = new StudentForm();
-                    break;
-                case FormType.ScheduleForm:
-                    newForm = new ScheduleForm();
-                    break;
-                case FormType.CourseForm:
-                    newForm = new CourseForm();
-                    break;
-                case FormType.GradeForm:
-                    newForm = new GradeForm();
-                    break;
-                default:
-                    return;
-            }
-            newForm.TopLevel = false;
-            newForm.Parent = this;
-            newForm.Show();
-        }
-
+        
+       
     }
 }

@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 namespace Instidute
 {
+  
     public class Professor : Person
     {
         public string Rank { get; set; }
 
-        //mallon tha ginei lista
-        // public Course[] Coureses { get; set; }
+        public List<Course> Courses { get; set; }
 
         public Professor()
         {
             Rank = string.Empty;
+            Courses = new List<Course>();
         }
         
         /*

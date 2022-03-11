@@ -10,12 +10,12 @@ namespace Instidute
     {
         public int RegisterNumber { get; set; }
 
-        //mallon tha ginei lista
-        //public Course[] Courses { get; set; }
+        public List<Course> Courses { get; set; }
 
-       public Student()
+        public Student()
         {
-            RegisterNumber = 0; 
+            RegisterNumber = 0;
+            Courses = new List<Course>();
         }
 
         /*
