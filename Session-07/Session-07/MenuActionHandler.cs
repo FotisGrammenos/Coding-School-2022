@@ -22,6 +22,11 @@ namespace Session_07
             _university.YearsOfService = 50;
         }
 
+        public MenuActionHandler(Instidute.University currUniversity)
+        {
+            _university = currUniversity;
+        }
+
         public void ExecuteSave()
         {
             string json = JsonConvert.SerializeObject(_university, Formatting.Indented);
@@ -49,7 +54,7 @@ namespace Session_07
                     newForm.SetVisibleIntField(true);
                     newForm.SetVisibleCourseList(true);
                     newForm.SetUpLabels("Professor Name", "Professor Rank", "Professor Age");
-                    PersonListLoader(newForm);
+                    ProfessorListLoader(newForm);
                     break;
                 case FormType.StudentForm:
                     newForm.Text = "Student";
@@ -76,9 +81,9 @@ namespace Session_07
         }
 
 
-        //TODO:i deuteri pio asximi switch tou komso! an prolabeis ala3e tin 
-        public void PersonListLoader(EditForm myForm)
+        public void ProfessorListLoader(EditForm myForm)
         {
+            myForm.ClearItemList();
             foreach (Instidute.Professor prof in _university.Professors)
             {
                 if (prof != null)
@@ -88,6 +93,7 @@ namespace Session_07
 
         public void StudentListLoader(EditForm myForm)
         {
+            myForm.ClearItemList();
             foreach (Instidute.Student stud in _university.Students)
             {
                 if (stud != null)
@@ -97,6 +103,7 @@ namespace Session_07
 
         public void CoursesListLoader(EditForm myForm)
         {
+            myForm.ClearItemList();
             foreach (Instidute.Course cors in _university.Courses)
             {
                 if (cors != null)
@@ -121,7 +128,7 @@ namespace Session_07
              }
          }*/
 
-        public string GetunirvsityName()
+        public string GetUnirvsityName()
         {
             return _university.Name;
         }

@@ -50,6 +50,7 @@
             this.buttonNew.Size = new System.Drawing.Size(106, 47);
             this.buttonNew.TabIndex = 0;
             this.buttonNew.Text = "New";
+            this.buttonNew.Click += new System.EventHandler(this.buttonNew_Click);
             // 
             // buttonDelete
             // 

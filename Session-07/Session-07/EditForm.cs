@@ -133,7 +133,7 @@ namespace Session_07
         }
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var handler = new ListObectHandler(this);
+            var handler = new ListOjbectHandler(this);
             string type = this.Text;
             switch (type)
             {
@@ -146,10 +146,42 @@ namespace Session_07
                 case ("Course"):
                     handler.CourseListObject(_university.Courses[checkedListBox1.SelectedIndex]);
                     break;
-                case ("Grade"):
+                /*case ("Grade"):
                     break;
                 case ("Schedule"):
+                    break;*/
+                default:
                     break;
+            }
+        }
+
+        private void buttonNew_Click(object sender, EventArgs e)
+        {
+            var handler = new NewButtonHandler(this);
+            var checker = new ListOjbectHandler(this);
+            var loader = new MenuActionHandler(_university);
+            string type = this.Text;
+            switch (type)
+            {
+                case ("Professor"):
+                    _university.Professors.Add(handler.CreateNewProfessor());
+                    loader.ProfessorListLoader(this);
+                    checker.ProfessorListObject(_university.Professors[_university.Professors.Count - 1]);
+                    break;
+                case ("Student"):
+                    _university.Students.Add(handler.CreateNewStudent());
+                    loader.StudentListLoader(this);
+                    checker.StudentListObject(_university.Students[_university.Students.Count - 1]);
+                    break;
+                case ("Course"):
+                    _university.Courses.Add(handler.CreateNewCourse());
+                    loader.CoursesListLoader(this);
+                    checker.CourseListObject(_university.Courses[_university.Courses.Count - 1]);
+                    break;
+                /*case ("Grade"):
+                    break;
+                case ("Schedule"):
+                    break;*/
                 default:
                     break;
             }

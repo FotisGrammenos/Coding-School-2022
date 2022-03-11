@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace Session_07
 {
-    public class ListObectHandler
+    public class ListOjbectHandler
     {
         private EditForm _helperEditForm;
 
-        public ListObectHandler()
+        public ListOjbectHandler()
         {
             _helperEditForm = new EditForm();
         }
-        public ListObectHandler(EditForm edit)
+        public ListOjbectHandler(EditForm edit)
        {
             _helperEditForm = edit;
        }
 
         public void ProfessorListObject(Instidute.Professor prof)
         {
-            _helperEditForm.SetTheFirstTwoTextField(prof.Name, prof.Rank);
+            _helperEditForm.SetTheFirstTwoTextField(prof.GetName(), prof.Rank);
             _helperEditForm.SetTheIntTextField(prof.Age.ToString());
             _helperEditForm.ClearCoursesList();
 

@@ -26,7 +26,7 @@ namespace Session_07
         {
             InitializeComponent();
             _myHandler = new MenuActionHandler();
-            this.Text = _myHandler.GetunirvsityName();
+            this.Text = _myHandler.GetUnirvsityName();
         }
 
         #region MenuActions
@@ -54,8 +54,6 @@ namespace Session_07
             _myHandler.CreateTheRightForm(FormType.ScheduleForm);
         }
 
-        //TODO: ftia3e autes tis sinartiseis oste an apothikeuei
-        //kai na kanei load arxeia Json
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _myHandler.ExecuteSave();   
