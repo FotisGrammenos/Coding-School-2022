@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Session_07
+{
+    public partial class UniversityForm : Form
+    {
+        
+        public UniversityForm()
+        {
+            InitializeComponent();
+           
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+    }
+}
