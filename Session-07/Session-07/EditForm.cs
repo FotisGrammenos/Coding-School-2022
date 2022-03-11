@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Web;
 
 namespace Session_07
 {
@@ -28,6 +29,7 @@ namespace Session_07
 
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             _university = university;
+            
         }
 
         #region InitForm
@@ -93,14 +95,21 @@ namespace Session_07
 
         public void AddItemOnList(string itemName)
         {
-            listViewObject.Items.Add(string.Format("{0}", itemName));
+            checkedListBox1.Items.Add(string.Format("{0}", itemName));
+        }   
+        public void ClearItemList()
+        {
+            checkedListBox1.Items.Clear();
         }
-
         public void AddCoursesOnList(string CourseName)
         {
             listViewCourses.Items.Add(string.Format("{0}", CourseName));
         }
 
+        public void ClearCoursesList()
+        {
+            listViewCourses.Items.Clear();
+        }
         public void SetTheFirstTwoTextField(string firstString, string secondString)
         {
             textFirstString.Text = firstString;
@@ -118,32 +127,24 @@ namespace Session_07
             labelSecontString.Text= secondString;
         }
 
-        
-
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-        private void listViewObject_SelectedIndexChanged(object sender, EventArgs e)
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             var handler = new ListObectHandler(this);
             string type = this.Text;
-            
             switch (type)
-            { 
-                case ("Professor"):
-
-
-                    //int index = listViewObject.Items.IndexOf(listViewObject.SelectedIndices[0]);
-                    //_university.Professors.Find(namn);
-                    //handler.ProfessorListObject(_university.Professors[listViewObject.SelectedIndex]);
+            {
+                case ("Professor"):                    
+                    handler.ProfessorListObject(_university.Professors[checkedListBox1.SelectedIndex]);
                     break;
                 case ("Student"):
-                    //handler.StudentListObject(_university.Students[llistViewObject.SelectedIndex]);
+                    handler.StudentListObject(_university.Students[checkedListBox1.SelectedIndex]);
                     break;
                 case ("Course"):
-                   // handler.CourseListObject(_university.Courses[listViewObject.SelectedIndices]);
+                    handler.CourseListObject(_university.Courses[checkedListBox1.SelectedIndex]);
                     break;
                 case ("Grade"):
                     break;

@@ -39,8 +39,8 @@
             this.textFirstString = new System.Windows.Forms.TextBox();
             this.textSecondString = new System.Windows.Forms.TextBox();
             this.textIntField = new System.Windows.Forms.TextBox();
-            this.listViewObject = new System.Windows.Forms.ListView();
             this.listViewCourses = new System.Windows.Forms.ListView();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
             // 
             // buttonNew
@@ -133,16 +133,6 @@
             this.textIntField.Size = new System.Drawing.Size(28, 20);
             this.textIntField.TabIndex = 23;
             // 
-            // listViewObject
-            // 
-            this.listViewObject.HideSelection = false;
-            this.listViewObject.Location = new System.Drawing.Point(12, 10);
-            this.listViewObject.Name = "listViewObject";
-            this.listViewObject.Size = new System.Drawing.Size(213, 343);
-            this.listViewObject.TabIndex = 24;
-            this.listViewObject.UseCompatibleStateImageBehavior = false;
-            this.listViewObject.SelectedIndexChanged += new System.EventHandler(this.listViewObject_SelectedIndexChanged);
-            // 
             // listViewCourses
             // 
             this.listViewCourses.HideSelection = false;
@@ -152,13 +142,23 @@
             this.listViewCourses.TabIndex = 25;
             this.listViewCourses.UseCompatibleStateImageBehavior = false;
             // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(12, 19);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(213, 334);
+            this.checkedListBox1.TabIndex = 26;
+            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            this.checkedListBox1.SelectedValueChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            // 
             // EditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(519, 422);
+            this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.listViewCourses);
-            this.Controls.Add(this.listViewObject);
             this.Controls.Add(this.textIntField);
             this.Controls.Add(this.textSecondString);
             this.Controls.Add(this.textFirstString);
@@ -191,7 +191,8 @@
         private System.Windows.Forms.TextBox textFirstString;
         private System.Windows.Forms.TextBox textSecondString;
         private System.Windows.Forms.TextBox textIntField;
-        private System.Windows.Forms.ListView listViewObject;
         private System.Windows.Forms.ListView listViewCourses;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
     }
 }

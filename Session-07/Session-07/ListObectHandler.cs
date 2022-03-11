@@ -23,6 +23,7 @@ namespace Session_07
         {
             _helperEditForm.SetTheFirstTwoTextField(prof.Name, prof.Rank);
             _helperEditForm.SetTheIntTextField(prof.Age.ToString());
+            _helperEditForm.ClearCoursesList();
 
             foreach (Instidute.Course cors in prof.Courses)
             {
@@ -35,6 +36,7 @@ namespace Session_07
         {
             _helperEditForm.SetTheFirstTwoTextField(student.Name, student.RegisterNumber.ToString());
             _helperEditForm.SetTheIntTextField(student.Age.ToString());
+            _helperEditForm.ClearCoursesList();
 
             foreach (Instidute.Course cors in student.Courses)
             {
