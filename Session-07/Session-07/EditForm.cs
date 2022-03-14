@@ -14,6 +14,8 @@ namespace Session_07
     public partial class EditForm : Form
     {
         private Instidute.University _university;
+        private ListOjbectHandler _objectList;
+        private MenuActionHandler _menuHandler;
 
         public EditForm()
         {
@@ -21,6 +23,8 @@ namespace Session_07
            
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             _university = new Instidute.University();
+            _objectList = new ListOjbectHandler(this);
+            _menuHandler = new MenuActionHandler(_university);
         }
 
         public EditForm(Instidute.University university)
@@ -29,7 +33,9 @@ namespace Session_07
 
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             _university = university;
-            
+            _objectList = new ListOjbectHandler(this);
+            _menuHandler = new MenuActionHandler(university);
+
         }
 
         #region InitForm
@@ -116,9 +122,20 @@ namespace Session_07
             textSecondString.Text = secondString;
         }
 
+        public void ClearFirstTwoTextField()
+        {
+            textFirstString.Text = string.Empty;
+            textSecondString.Text = string.Empty;
+        }
+
         public void SetTheIntTextField(string index)
         {
             textIntField.Text = index;
+        }
+
+        public void ClearTheIntTextField()
+        {
+            textIntField.Text = string.Empty;
         }
 
         private void SetTheFirstTwoLableField(string firstString, string secondString)
@@ -127,24 +144,25 @@ namespace Session_07
             labelSecontString.Text= secondString;
         }
 
+
+        #region ButtonAction
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var handler = new ListOjbectHandler(this);
             string type = this.Text;
             switch (type)
             {
-                case ("Professor"):                    
-                    handler.ProfessorListObject(_university.Professors[checkedListBox1.SelectedIndex]);
+                case ("Professor"):
+                    _objectList.ProfessorListObject(_university.Professors[checkedListBox1.SelectedIndex]);
                     break;
                 case ("Student"):
-                    handler.StudentListObject(_university.Students[checkedListBox1.SelectedIndex]);
+                    _objectList.StudentListObject(_university.Students[checkedListBox1.SelectedIndex]);
                     break;
                 case ("Course"):
-                    handler.CourseListObject(_university.Courses[checkedListBox1.SelectedIndex]);
+                    _objectList.CourseListObject(_university.Courses[checkedListBox1.SelectedIndex]);
                     break;
                 /*case ("Grade"):
                     break;
@@ -158,25 +176,23 @@ namespace Session_07
         private void buttonNew_Click(object sender, EventArgs e)
         {
             var handler = new NewButtonHandler(this);
-            var checker = new ListOjbectHandler(this);
-            var loader = new MenuActionHandler(_university);
             string type = this.Text;
             switch (type)
             {
                 case ("Professor"):
                     _university.Professors.Add(handler.CreateNewProfessor());
-                    loader.ProfessorListLoader(this);
-                    checker.ProfessorListObject(_university.Professors[_university.Professors.Count - 1]);
+                    _menuHandler.ProfessorListLoader(this);
+                    _objectList.ProfessorListObject(_university.Professors[_university.Professors.Count - 1]);
                     break;
                 case ("Student"):
                     _university.Students.Add(handler.CreateNewStudent());
-                    loader.StudentListLoader(this);
-                    checker.StudentListObject(_university.Students[_university.Students.Count - 1]);
+                    _menuHandler.StudentListLoader(this);
+                    _objectList.StudentListObject(_university.Students[_university.Students.Count - 1]);
                     break;
                 case ("Course"):
                     _university.Courses.Add(handler.CreateNewCourse());
-                    loader.CoursesListLoader(this);
-                    checker.CourseListObject(_university.Courses[_university.Courses.Count - 1]);
+                    _menuHandler.CoursesListLoader(this);
+                    _objectList.CourseListObject(_university.Courses[_university.Courses.Count - 1]);
                     break;
                 /*case ("Grade"):
                     break;
@@ -186,5 +202,37 @@ namespace Session_07
                     break;
             }
         }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            DeleteButtonHandler handler = new DeleteButtonHandler(this);
+            string type = this.Text;
+            switch (type)
+            {
+                case ("Professor"):
+                    _university.Professors = handler.DeleteProfessor(_university.Professors, checkedListBox1.SelectedIndex);
+                    _menuHandler.ProfessorListLoader(this);
+                    break;
+                case ("Student"):
+                    _university.Students = handler.DeleteStudents(_university.Students, checkedListBox1.SelectedIndex);
+                    _menuHandler.StudentListLoader(this);
+                    break;
+                 case ("Course"):
+                    _university.Courses = handler.DeleteCourse(_university.Courses, checkedListBox1.SelectedIndex);
+                    _menuHandler.CoursesListLoader(this);
+                    break;
+                 /*case ("Grade"):
+                     break;
+                 case ("Schedule"):
+                     break;*/
+                default:
+                    break;
+            }
+            ClearCoursesList();
+            ClearFirstTwoTextField();
+            ClearTheIntTextField();
+        }
+
+        #endregion
     }
 }

@@ -20,11 +20,12 @@ namespace Session_07
             _university.PopulateUniversity();
             _university.Name = "Florida State University";
             _university.YearsOfService = 50;
+            ExecuteLoad();
         }
 
         public MenuActionHandler(Instidute.University currUniversity)
         {
-            _university = currUniversity;
+            _university = currUniversity;          
         }
 
         public void ExecuteSave()

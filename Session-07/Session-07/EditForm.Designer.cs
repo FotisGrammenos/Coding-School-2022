@@ -59,6 +59,7 @@
             this.buttonDelete.Size = new System.Drawing.Size(106, 47);
             this.buttonDelete.TabIndex = 1;
             this.buttonDelete.Text = "Delete";
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // buttonCancel
             // 
