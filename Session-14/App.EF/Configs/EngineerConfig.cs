@@ -13,11 +13,14 @@ namespace App.EF.Configs
     {
         public void Configure(EntityTypeBuilder<Engineer> builder)
         {
+            builder.HasKey(e => e.ID);
             builder.Property(e => e.Name).HasMaxLength(100);
             builder.Property(e=>e.Surname).HasMaxLength(100);
             builder.Property(e => e.SallaryPerMonth).HasColumnType("decimal(18,4)"); 
             builder.Property(e=>e.Status).HasMaxLength(100);
             builder.Property(e => e.ManagerID).IsRequired();
+
+           
         }
     }
 }

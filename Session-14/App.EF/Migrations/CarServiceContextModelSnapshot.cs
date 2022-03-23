@@ -108,6 +108,8 @@ namespace App.EF.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("ManagerID");
+
                     b.ToTable("Engineers");
                 });
 
@@ -182,6 +184,12 @@ namespace App.EF.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("CarID");
+
+                    b.HasIndex("CustomerID");
+
+                    b.HasIndex("ManagerID");
+
                     b.ToTable("Transactions");
                 });
 
@@ -208,18 +216,76 @@ namespace App.EF.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("EngineerID");
+
+                    b.HasIndex("ServiceTaskID");
+
                     b.HasIndex("TransactionID");
 
                     b.ToTable("TransactionLines");
                 });
 
+            modelBuilder.Entity("DataLibrary.Engineer", b =>
+                {
+                    b.HasOne("DataLibrary.Manager", "Manager")
+                        .WithMany()
+                        .HasForeignKey("ManagerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Manager");
+                });
+
+            modelBuilder.Entity("DataLibrary.Transaction", b =>
+                {
+                    b.HasOne("DataLibrary.Car", "Car")
+                        .WithMany()
+                        .HasForeignKey("CarID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataLibrary.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataLibrary.Manager", "Manager")
+                        .WithMany()
+                        .HasForeignKey("ManagerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Car");
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Manager");
+                });
+
             modelBuilder.Entity("DataLibrary.TransactionLine", b =>
                 {
+                    b.HasOne("DataLibrary.Engineer", "Engineer")
+                        .WithMany()
+                        .HasForeignKey("EngineerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataLibrary.ServiceTask", "ServiceTask")
+                        .WithMany()
+                        .HasForeignKey("ServiceTaskID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("DataLibrary.Transaction", null)
                         .WithMany("TransactionLines")
                         .HasForeignKey("TransactionID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Engineer");
+
+                    b.Navigation("ServiceTask");
                 });
 
             modelBuilder.Entity("DataLibrary.Transaction", b =>

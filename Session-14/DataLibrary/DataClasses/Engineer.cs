@@ -11,11 +11,14 @@ namespace DataLibrary
     {
         public Guid? ManagerID { get; set; }
         public decimal SallaryPerMonth { get; set; }
-
+        public Manager Manager { get; set; }
         public StatusEnum Status { get; set; }
+
 
         public Engineer()
         {
+
+            Manager = new Manager();
         }
 
     }

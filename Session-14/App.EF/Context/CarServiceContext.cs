@@ -9,7 +9,7 @@ using App.EF.Configs;
 
 namespace App.EF.Context
 {
-    internal class CarServiceContext : DbContext
+    public class CarServiceContext : DbContext
     {
         public DbSet<Car> Cars { get; set; }
         public DbSet<Customer> Customers { get; set; }
@@ -23,6 +23,8 @@ namespace App.EF.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            //modelBuilder.Entity<Transaction>().HasMany(b => b.Posts).WithOne();
+
             modelBuilder.ApplyConfiguration(new CustomerConfig());
             modelBuilder.ApplyConfiguration(new CarConfig());
             modelBuilder.ApplyConfiguration(new EngineerConfig());

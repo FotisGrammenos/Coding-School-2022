@@ -13,6 +13,7 @@ namespace App.EF.Configs
     {
         public void Configure(EntityTypeBuilder<Credential> builder)
         {
+            builder.HasKey(c => c.ID);
             builder.Property(c => c.Username).HasMaxLength(100);
             builder.Property(c => c.Password).HasColumnType("decimal(18,4)"); 
         }

@@ -15,6 +15,8 @@ namespace App.EF.Configs
         {
             builder.Property(tl => tl.EngineerID).IsRequired();
             builder.Property(tl => tl.ServiceTaskID).IsRequired();
+
+           
         }
     }
 }

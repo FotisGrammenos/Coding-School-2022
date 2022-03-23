@@ -12,12 +12,6 @@ namespace DataLibrary
         public string Brand { get; set; }
         public string Model { get; set; }
         public string CarRegNumber { get; set; }
-        /*public string FullName { get
-            {
-                return $"{Brand} {Model}";
-            }
-        }*/
-
         public Car()
         {
 

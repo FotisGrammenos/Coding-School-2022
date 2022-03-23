@@ -13,6 +13,7 @@ namespace App.EF.Configs
     {
         public void Configure(EntityTypeBuilder<Car> builder)
         {
+            builder.HasKey(c => c.ID);
             builder.Property(c => c.Brand).HasMaxLength(50);
             builder.Property(c => c.CarRegNumber).HasMaxLength(50);
             builder.Property(c => c.Model).HasMaxLength(10);

@@ -14,6 +14,7 @@ namespace App.EF.Configs
     {
         public void Configure(EntityTypeBuilder<ServiceTask> builder)
         {
+            builder.HasKey(s => s.ID);
             builder.Property(s => s.Code).HasMaxLength(100);
             builder.Property(s => s.Hours).HasColumnType("decimal(18,4)"); 
             builder.Property(s => s.Description).HasMaxLength(100);

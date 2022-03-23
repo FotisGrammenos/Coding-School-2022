@@ -13,6 +13,7 @@ namespace App.EF.Configs
     {
         public void Configure(EntityTypeBuilder<Manager> builder)
         {
+            builder.HasKey(m => m.ID);
             builder.Property(m => m.Name).HasMaxLength(100);
             builder.Property(m => m.Surname).HasMaxLength(100);
             builder.Property(m => m.SallaryPerMonth).HasColumnType("decimal(18,4)"); 

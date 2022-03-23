@@ -13,6 +13,7 @@ namespace App.EF.Configs
     {
         public void Configure(EntityTypeBuilder<Customer> builder)
         {
+            builder.HasKey(c => c.ID);
             builder.Property(c => c.Name).HasMaxLength(100);
             builder.Property(c => c.Surname).HasMaxLength(100);
             builder.Property(c => c.TIN).HasMaxLength(20);
