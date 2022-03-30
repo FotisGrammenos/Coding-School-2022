@@ -58,16 +58,27 @@
                                 </tr>
                                 <tr>
                                     <td><label for="txtAge">Age</label></td>
-                                    <td><input id="txtAge"></td>
+                                    <td> <input id="txtAge" type="number"></td>
                                 </tr>
                                 <tr>
                                     <td><label for="txtGender">Gender</label></td>
-                                    <td><input id="txtGender"></td>
+                                    <td>
+                                        <div id="gender">
+                                            <label>
+                                                Male
+                                                <input type="radio" value="Male" name="gender">
+                                            </label>
+                                            <label>
+                                                Female
+                                                <input type="radio" value="Female" name="gender">
+                                            </label>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <button type="button" onclick="myClick(event)">Add New List</button>
                                         <button id="btnAddToList" type="button" onclick="addToList()">Add To List</button>
+                                        <ul id="lstList"></ul>
                                     </td>
                                 </tr>
                             </table>
@@ -99,6 +110,8 @@
         </div>
     </body>
     <script type="text/javascript">
+        var itemsList = [];
+        var incId = 0;
 
         function Reverse()
         {
@@ -125,16 +138,11 @@
             document.getElementById("txtFinalQ2").value = "True";
         }
 
-        function myClick(event) {
-            console.log(event);
-            event.stopPropagation()
-        }
-
         function addToList() {
             var name = document.getElementById("txtName").value;
             var surname = document.getElementById("txtSurName").value;
             var age = document.getElementById("txtAge").value;
-            var Gender = document.getElementById("txtGender").value;
+            var gender = document.querySelector('input[name="gender"]:checked').value;
 
             var selectedId = +document.getElementById("txtSelectedId").value;
             if (selectedId) {
@@ -144,12 +152,14 @@
                         continue;
 
                     curItem.name = name;
-                    curItem.description = description;
+                    curItem.surname = surname;
+                    curItem.age = age;
+                    curItem.gender = gender;
                     break;
                 }
             } else {
                 incId += 1;
-                itemsList.push({ id: incId, name, description });
+                itemsList.push({ id: incId, name, surname, age, gender });
             }
             redrawList();
         }
@@ -169,13 +179,9 @@
                     loadSelectedItem(event);
                 });
 
+                
                 lstList.appendChild(tmpLi);
             }
-        }
-
-        function addNew() {
-            document.getElementById('frmMain').reset();
-            document.getElementById('txtSelectedId').value = null;
         }
 
         function multiply(a, b) {
