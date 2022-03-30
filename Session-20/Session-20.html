@@ -1,0 +1,195 @@
+<!doctype html>
+
+<html>
+
+    <head>
+
+    </head>
+
+    <body>
+        <div class="main-container">
+
+            <table>
+                <tr>
+                    <td><h1>Question1</h1></td>
+                </tr>
+                <tr>
+                    <td><label for="txtString">String</label></td>
+                    <td><input id="txtString"></td>
+                </tr>
+                <tr>
+                    <td><label for="txtFinal">FinalString</label></td>
+                    <td><input id="txtFinal"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button id="btnConvert" onclick="Reverse()">Convert</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><h1>Question2</h1></td>
+                </tr>
+                <tr>
+                    <td><label for="txtStringQ2">String</label></td>
+                    <td><input id="txtStringQ2"></td>
+                </tr>
+                <tr>
+                    <td><label for="txtFinalQ2">IsPalindrom</label></td>
+                    <td><input id="txtFinalQ2"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button id="btnConvertQ2" onclick="Palindrome()">Check</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><h1>Question3</h1></td>
+                    <div>
+                        <form id="frmMain" onclick="myClick(event)">
+                            <input id="txtSelectedId" type="hidden">
+                            <table>
+                                <tr>
+                                    <td><label for="txtName">Name</label></td>
+                                    <td><input id="txtName"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="txtSurName">SurName</label></td>
+                                    <td><input id="txtSurName"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="txtAge">Age</label></td>
+                                    <td><input id="txtAge"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="txtGender">Gender</label></td>
+                                    <td><input id="txtGender"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <button type="button" onclick="myClick(event)">Add New List</button>
+                                        <button id="btnAddToList" type="button" onclick="addToList()">Add To List</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </tr>
+                <tr>
+                    <td><h1>Question4</h1></td>
+                    <td><p>No UI for this qestion, use console</p></td>
+
+                </tr>
+                <tr>
+                    <td><h1>Question5</h1></td>
+                </tr>
+                <tr>
+                    <td><label for="txtStringQ5">String</label></td>
+                    <td><input id="txtStringQ5"></td>
+                </tr>
+                <tr>
+                    <td><label for="txtFinalQ5">Result</label></td>
+                    <td><input id="txtFinalQ5"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button id="btnConvertQ5" onclick="incrementString()">Start</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+    <script type="text/javascript">
+
+        function Reverse()
+        {
+            var name = document.getElementById("txtString").value;
+
+            var reversedString = "";
+            for (var i = name.length - 1; i >= 0; i--)
+            {
+                reversedString += name[i];
+            }
+            document.getElementById("txtFinal").value = reversedString;
+        }
+
+        function Palindrome() {
+            var string = document.getElementById("txtStringQ2").value;
+            var finalstring = string.toLowerCase().split(" ").join("");
+            let len = finalstring.length;
+            for (let i = 0; i < len / 2; i++) {
+                if (finalstring[i] !== finalstring[len - 1 - i]) {
+                    document.getElementById("txtFinalQ2").value = "False";
+                    return;
+                }
+            }
+            document.getElementById("txtFinalQ2").value = "True";
+        }
+
+        function myClick(event) {
+            console.log(event);
+            event.stopPropagation()
+        }
+
+        function addToList() {
+            var name = document.getElementById("txtName").value;
+            var surname = document.getElementById("txtSurName").value;
+            var age = document.getElementById("txtAge").value;
+            var Gender = document.getElementById("txtGender").value;
+
+            var selectedId = +document.getElementById("txtSelectedId").value;
+            if (selectedId) {
+                for (var i = 0; i < itemsList.length; i++) {
+                    var curItem = itemsList[i];
+                    if (curItem.id !== selectedId)
+                        continue;
+
+                    curItem.name = name;
+                    curItem.description = description;
+                    break;
+                }
+            } else {
+                incId += 1;
+                itemsList.push({ id: incId, name, description });
+            }
+            redrawList();
+        }
+
+        function redrawList() {
+
+            var lstList = document.getElementById("lstList");
+
+            lstList.innerHTML = "";
+            for (var i = 0; i < itemsList.length; i++) {
+
+                var curListItem = itemsList[i];
+                var tmpLi = document.createElement("li");
+                tmpLi.appendChild(document.createTextNode(curListItem.name));
+                tmpLi.setAttribute('data-id', curListItem.id);
+                tmpLi.addEventListener('click', (event) => {
+                    loadSelectedItem(event);
+                });
+
+                lstList.appendChild(tmpLi);
+            }
+        }
+
+        function addNew() {
+            document.getElementById('frmMain').reset();
+            document.getElementById('txtSelectedId').value = null;
+        }
+
+        function multiply(a, b) {
+            return a * b;
+        }
+
+        function incrementString() {
+            var input = document.getElementById("txtStringQ5").value;
+            var splits = input.split(/(\d+)$/),
+                num = 1;
+            if (splits[1] !== undefined) num = parseInt(splits[1]) + 1;
+            document.getElementById("txtFinalQ5").value = splits[0] + num;
+        }
+
+    </script>
+
+</html>
