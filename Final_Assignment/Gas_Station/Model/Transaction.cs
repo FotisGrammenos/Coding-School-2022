@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Model.Enums;
 
 namespace Model
 {
@@ -14,10 +15,14 @@ namespace Model
 
         public Guid CustomerID { get; set; }
 
-        public Payment PaymentMethod { get; set; }
+        public PayMentMethod PaymentMethod { get; set; }
 
         public decimal TotalValue { get; set; }
 
+        public List<TransactionLine> TransactionLines { get; set; } 
+
+        public Customer Customer { get; set; }
+ 
         public Transaction()
         {
 
