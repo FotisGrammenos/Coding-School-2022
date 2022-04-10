@@ -21,6 +21,8 @@ namespace Model
 
         public EmployeeType Role { get; set; }
 
+        public List<Transaction> Transactions { get; set; }
+
         public Employee()
         {
 

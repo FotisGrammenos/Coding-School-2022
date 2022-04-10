@@ -12,13 +12,13 @@ namespace Model
 
 		public string Surname { get; set; }
 
-		public Guid CardNumber { get; set; }
+		public string CardNumber { get;}
 
 		public List<Transaction> Transactions { get; set; }
 
 		public Customer()
 		{
-			CardNumber = Guid.NewGuid();
+			CardNumber =$"A{Guid.NewGuid().ToString("N").Substring(0, 7)}";	
 		}
 	}
 }

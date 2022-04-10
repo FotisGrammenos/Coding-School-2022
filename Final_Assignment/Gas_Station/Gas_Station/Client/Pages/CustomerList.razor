@@ -1,0 +1,80 @@
+﻿@page "/customerlist"
+@inject HttpClient httpClient
+@inject IJSRuntime jsRuntime
+@inject NavigationManager navigationManager
+@using Gas_Station.Shared
+@using Microsoft.AspNetCore.Components;
+@using System.Net.Http.Json;
+
+
+<h3>Customers </h3>
+<div class=row>
+
+    <button class="btn btn-primary w-25" @onclick="AddItem">Add</button>
+
+</div>
+@if (isLoading)
+{
+    <p> Loading...</p>
+}
+else
+{
+    <div class="table-responsive-md">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>CardNumber</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var customer in customerList)
+                {
+                    <tr>
+                        <td>@customer.Name</td>
+                        <td>@customer.Surname</td>
+                        <td>@customer.CardNumber</td>
+                        <td>
+                            <button class="btn btn-warning" @onclick="() => EditItem(customer)">Edit</button>
+                            <button class="btn btn-danger" @onclick="() => DeleteItem(customer)">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+@code 
+{
+    List<CustomerListViewModel> customerList = new();
+    bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadItemsFromServer();
+        isLoading = false;
+    }
+
+    private async Task LoadItemsFromServer()
+    {
+        customerList = await httpClient.GetFromJsonAsync<List<CustomerListViewModel>>("customer");
+    }
+
+    protected async Task AddItem()
+    {
+       navigationManager.NavigateTo("/customerlist/edit");
+    }
+
+    protected async  Task EditItem(CustomerListViewModel customerToEdit)
+    {
+        navigationManager.NavigateTo($"/customerlist/edit/{customerToEdit.Id}");
+    }
+
+    protected async Task DeleteItem(CustomerListViewModel customerToDelete)
+    {
+        var response = await httpClient.DeleteAsync($"customer/{customerToDelete.Id}");
+        response.EnsureSuccessStatusCode();
+        await LoadItemsFromServer();
+    }
+}

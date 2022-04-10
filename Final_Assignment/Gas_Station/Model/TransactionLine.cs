@@ -22,6 +22,10 @@ namespace Model
 
         public decimal TotalValue { get; set; }
 
+        public Item Item { get; set; }
+
+        public Transaction Transaction { get; set; }
+
         public TransactionLine()
         {
 

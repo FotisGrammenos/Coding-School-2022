@@ -1,4 +1,7 @@
+using Gas_Station.EF.Context;
+using Gas_Station.EF.Repos;
 using Microsoft.AspNetCore.ResponseCompression;
+using Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +9,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
+builder.Services.AddDbContext<GasStationContext>();
+builder.Services.AddScoped<IEntityRepo<Customer>, CustomerRepo>();
+builder.Services.AddScoped<IEntityRepo<Item>, ItemRepo>();
+builder.Services.AddScoped<IEntityRepo<Employee>, EmployeeRepo>();
+builder.Services.AddScoped<IEntityRepo<Transaction>, TransactionRepo>();
+builder.Services.AddScoped<IEntityRepo<TransactionLine>, TransactionLineRepo>();
 
 var app = builder.Build();
 

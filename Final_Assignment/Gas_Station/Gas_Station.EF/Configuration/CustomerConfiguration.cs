@@ -17,6 +17,7 @@ namespace Gas_Station.EF.Configuration
             builder.HasKey(customer => customer.ID);
             builder.Property(customer => customer.Name).HasMaxLength(50);
             builder.Property(customer => customer.Surname).HasMaxLength(50);
+            builder.Property(customer=>customer.CardNumber).HasMaxLength(100);
             builder.HasIndex(customer => customer.CardNumber).IsUnique();
 
             builder.HasMany(customer => customer.Transactions)

@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gas_Station.Client", "Gas_S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gas_Station.Shared", "Gas_Station\Shared\Gas_Station.Shared.csproj", "{6313AABA-AD46-4DAF-B43F-E4444E3DCA08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{6A60332E-615F-4876-AB7B-7715ECD7640C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{6A60332E-615F-4876-AB7B-7715ECD7640C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gas_Station.EF", "Gas_Station.EF\Gas_Station.EF.csproj", "{426AE296-50BB-46D7-89F2-276EE6F2A93A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gas_Station.EF", "Gas_Station.EF\Gas_Station.EF.csproj", "{426AE296-50BB-46D7-89F2-276EE6F2A93A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

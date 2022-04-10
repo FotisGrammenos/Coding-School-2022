@@ -9,7 +9,7 @@ namespace Model
 {
     public class Item : BaseEntitie
     {
-        public Guid Code { get; set; }
+        public string Code { get; set; }
 
         public string Description { get; set; }
 
@@ -19,9 +19,11 @@ namespace Model
 
         public decimal Cost { get; set; }
 
+        public List<TransactionLine> TransactionLines { get; set; }
+
         public Item()
         {
-            Code = Guid.NewGuid();
+            Code = Guid.NewGuid().ToString("N").Substring(0, 7);
         }
     }
 }

@@ -23,6 +23,7 @@ namespace Model
 
         public Customer Customer { get; set; }
  
+        public Employee Employee { get; set; }
         public Transaction()
         {
 
