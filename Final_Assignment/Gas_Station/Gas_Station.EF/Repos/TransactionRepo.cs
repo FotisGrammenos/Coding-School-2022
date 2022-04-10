@@ -37,7 +37,7 @@ namespace Gas_Station.EF.Repos
                                                     .ToListAsync();
         }
 
-        public async Task<Transaction?> GetByIdAsynv(Guid id)
+        public async Task<Transaction?> GetByIdAsync(Guid id)
         {
             return await _context.Transactions.Include(trasaction => trasaction.Customer)
                                                     .Include(trasaction => trasaction.Employee)

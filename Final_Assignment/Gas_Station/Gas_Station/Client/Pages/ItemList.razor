@@ -1,4 +1,4 @@
-﻿@page "/customerlist"
+﻿@page "/itemlist"
 @inject HttpClient httpClient
 @inject IJSRuntime jsRuntime
 @inject NavigationManager navigationManager
@@ -7,7 +7,8 @@
 @using System.Net.Http.Json;
 
 
-<h3>Customers </h3>
+<h3>ItemList</h3>
+
 <div class=row>
 
     <button class="btn btn-primary w-25" @onclick="AddItem">Add</button>
@@ -23,21 +24,24 @@ else
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Surname</th>
-                    <th>CardNumber</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                    <th>Cost</th>
+                    <th>Price</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var customer in customerList)
+                @foreach (var item in itemList)
                 {
                     <tr>
-                        <td>@customer.Name</td>
-                        <td>@customer.Surname</td>
-                        <td>@customer.CardNumber</td>
+                        <td>@item.Description</td>
+                        <td>@item.Type</td>
+                        <td>@item.Cost</td>
+                        <td>@item.Price</td>
                         <td>
-                            <button class="btn btn-warning" @onclick="() => EditItem(customer)">Edit</button>
-                            <button class="btn btn-danger" @onclick="() => DeleteItem(customer)">Delete</button>
+                            <button class="btn btn-warning " @onclick="() => EditItem(item)">Edit</button>
+                            <button class="btn btn-danger " @onclick="() => DeleteItem(item)">Delete</button>
                         </td>
                     </tr>
                 }
@@ -45,9 +49,9 @@ else
         </table>
     </div>
 }
-@code 
-{
-    List<CustomerListViewModel> customerList = new();
+
+@code {
+    List<ItemListViewModel> itemList = new();
     bool isLoading = true;
 
     protected override async Task OnInitializedAsync()
@@ -58,27 +62,27 @@ else
 
     private async Task LoadItemsFromServer()
     {
-        customerList = await httpClient.GetFromJsonAsync<List<CustomerListViewModel>>("customer");
+        itemList = await httpClient.GetFromJsonAsync<List<ItemListViewModel>>("item");
     }
 
-    protected async Task AddItem()
+    async Task AddItem()
     {
-       navigationManager.NavigateTo("/customerlist/edit");
+        navigationManager.NavigateTo("/itemlist/edit");
     }
 
-    protected async  Task EditItem(CustomerListViewModel customerToEdit)
-    {
-        navigationManager.NavigateTo($"/customerlist/edit/{customerToEdit.Id}");
-    }
-
-    protected async Task DeleteItem(CustomerListViewModel customerToDelete)
+    async Task DeleteItem(ItemListViewModel item)
     {
         var confirm = await jsRuntime.InvokeAsync<bool>("confirmDelete", null);
         if (confirm)
         {
-            var response = await httpClient.DeleteAsync($"customer/{customerToDelete.Id}");
+            var response = await httpClient.DeleteAsync($"pet/{item.Id}");
             response.EnsureSuccessStatusCode();
             await LoadItemsFromServer();
         }
+    }
+
+    async Task EditItem(ItemListViewModel pet)
+    {
+        navigationManager.NavigateTo($"/itemlist/edit/{pet.Id}");
     }
 }

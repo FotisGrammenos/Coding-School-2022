@@ -35,7 +35,7 @@ namespace Gas_Station.Server.Controllers
             var getCustomer = new CustomerListViewModel();
             if (id != Guid.Empty)
             {
-                var existing = await _customerRepo.GetByIdAsynv(id);
+                var existing = await _customerRepo.GetByIdAsync(id);
                 if (existing == null) throw new ArgumentException($"Given id '{id}' was not found in database"); ;
 
                 getCustomer.Id = existing.ID;
@@ -51,7 +51,7 @@ namespace Gas_Station.Server.Controllers
         {
             var newCustomer = new Customer()
             {
-                ID = Guid.NewGuid(),
+  
                 Name = customer.Name,
                 Surname = customer.Surname,
                 
@@ -63,7 +63,7 @@ namespace Gas_Station.Server.Controllers
         [HttpPut]
         public async Task<ActionResult> Put(CustomerEditViewModel customer)
         {
-            var customerUpdate= await _customerRepo.GetByIdAsynv(customer.Id);
+            var customerUpdate= await _customerRepo.GetByIdAsync(customer.Id);
             if(customerUpdate == null) return NotFound();
             customerUpdate.Name = customer.Name;
             customerUpdate.Surname = customer.Surname;

@@ -6,7 +6,7 @@ namespace Gas_Station.EF.Repos
     {
         Task<IEnumerable<TEntity>> GetAllAsync();
 
-        Task<TEntity?>GetByIdAsynv(Guid id);
+        Task<TEntity?>GetByIdAsync(Guid id);
 
         Task AddAsync(TEntity entity);
 

@@ -1,0 +1,122 @@
+﻿@page "/itemlist/edit/{Id:guid?}"
+@using Gas_Station.Shared
+@using static Model.Enums
+@inject HttpClient httpClient
+@inject NavigationManager navManager
+
+<h3>ItemEdit</h3>
+
+
+@if (Item == null)
+{
+    <p>Loading ...</p>
+}
+else
+{
+    @if (Id == Guid.Empty)
+    {
+        <h2>Add new pet</h2>
+    }
+    else
+    {
+        <h2>Edit @Item.Description</h2>
+    }
+    @if (ShowingErrorMessages)
+    {
+        <div class="row">
+            <div class="alert alert-info" role="alert">
+                <p>There was an error with the input fields.</p>
+                <p>Please make sure that you have enter all the values correctly.</p>
+            </div>
+        </div>
+    }
+    <div class="row">
+        <div class="col-md-6">
+            <label for="item-description">Description</label>
+            <input name="item-description" class="form-control" @bind="@Item.Description" placeholder="Item Description" />
+        </div>
+    </div>
+    <div class="row mt-1">
+        <div class="col-md-6">
+            <label for="item-type">Type</label>
+            <select name="item-type" class="form-select" @bind="ItemType">
+                <option value="-1">Select Item Type</option>
+                @foreach (var item in Enum.GetValues(typeof(ItemType)))
+                {
+                    <option value="@((int)item)">@item.ToString()</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="row mt-1">
+        <div class="col-md-6">
+            <label for="item-cost">Cost</label>
+            <input name="item-cost" type="number" class="form-control" @bind="@Item.Cost" placeholder="Item Cost" min="0" />
+        </div>
+        <div class="col-md-6">
+            <label for="item-price">Price</label>
+            <input name="item-price" type="number" class="form-control" @bind="@Item.Price" placeholder="Item Price" min="0" />
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-6">
+            <button class="btn btn-success" @onclick="OnSave">Save</button>
+            <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+        </div>
+    </div>
+
+}
+@code {
+    [Parameter] public Guid? Id { get; set; }
+    ItemEditViewModel Item { get; set; }
+    private int ItemType { get; set; } = -1;
+    private bool ShowingErrorMessages = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id == null)
+        {
+            Id = Guid.Empty;
+        }
+
+        Item = await httpClient.GetFromJsonAsync<ItemEditViewModel>($"item/{Id}");
+
+        if (Id != null)
+        {
+            ItemType = (int)Item.Type;
+        }
+
+    }
+
+    protected async Task OnSave()
+    {
+        if (string.IsNullOrEmpty(Item.Description) ||
+            ItemType == -1 ||
+            Item.Cost <= 0 ||
+            Item.Price <= 0)
+        {
+            ShowingErrorMessages = true;
+            return;
+        }
+        ShowingErrorMessages = false;
+
+
+        HttpResponseMessage response;
+        Item.Type = (ItemType)ItemType;
+        if (Id == Guid.Empty)
+        {
+            response = await httpClient.PostAsJsonAsync("item", Item);
+        }
+        else
+        {
+            response = await httpClient.PutAsJsonAsync("item", Item);
+        }
+        response.EnsureSuccessStatusCode();
+        navManager.NavigateTo("itemlist");
+    }
+
+    protected void OnCancel()
+    {
+        navManager.NavigateTo("itemlist");
+    }
+}

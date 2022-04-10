@@ -34,7 +34,7 @@ namespace Gas_Station.EF.Repos
             return await _context.Items.ToListAsync();
         }
 
-        public async Task<Item?> GetByIdAsynv(Guid id)
+        public async Task<Item?> GetByIdAsync(Guid id)
         {
             return await _context.Items.SingleOrDefaultAsync(item => item.ID == id);
         }
