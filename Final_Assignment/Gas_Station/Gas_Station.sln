@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gas_Station.EF", "Gas_Station.EF\Gas_Station.EF.csproj", "{426AE296-50BB-46D7-89F2-276EE6F2A93A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gas_Station.Win", "Gas_Station.Win\Gas_Station.Win.csproj", "{D8FB5CD0-8503-4386-9E26-363D118A5879}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{426AE296-50BB-46D7-89F2-276EE6F2A93A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{426AE296-50BB-46D7-89F2-276EE6F2A93A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{426AE296-50BB-46D7-89F2-276EE6F2A93A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8FB5CD0-8503-4386-9E26-363D118A5879}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8FB5CD0-8503-4386-9E26-363D118A5879}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8FB5CD0-8503-4386-9E26-363D118A5879}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8FB5CD0-8503-4386-9E26-363D118A5879}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

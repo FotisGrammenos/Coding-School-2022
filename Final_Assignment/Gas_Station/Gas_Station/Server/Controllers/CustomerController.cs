@@ -36,7 +36,7 @@ namespace Gas_Station.Server.Controllers
             if (id != Guid.Empty)
             {
                 var existing = await _customerRepo.GetByIdAsync(id);
-                if (existing == null) throw new ArgumentException($"Given id '{id}' was not found in database"); ;
+                if (existing == null) throw new ArgumentException($"Given id '{id}' was not found in database");
 
                 getCustomer.Id = existing.ID;
                 getCustomer.Name = existing.Name;
