@@ -73,7 +73,7 @@ else
 
     protected async Task DeleteItem(CustomerListViewModel customerToDelete)
     {
-        var confirm = await jsRuntime.InvokeAsync<bool>("confirmDelete", null);
+        var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Do you want to delete it?");
         if (confirm)
         {
             var response = await httpClient.DeleteAsync($"customer/{customerToDelete.Id}");

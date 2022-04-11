@@ -4,7 +4,6 @@
 @inject HttpClient httpClient
 @inject NavigationManager navManager
 
-<h3>ItemEdit</h3>
 
 
 @if (Item == null)
@@ -40,7 +39,6 @@ else
         <div class="col-md-6">
             <label for="item-type">Type</label>
             <select name="item-type" class="form-select" @bind="ItemType">
-                <option value="-1">Select Item Type</option>
                 @foreach (var item in Enum.GetValues(typeof(ItemType)))
                 {
                     <option value="@((int)item)">@item.ToString()</option>
@@ -69,7 +67,7 @@ else
 @code {
     [Parameter] public Guid? Id { get; set; }
     ItemEditViewModel Item { get; set; }
-    private int ItemType { get; set; } = -1;
+    private int ItemType { get; set; }
     private bool ShowingErrorMessages = false;
 
     protected override async Task OnInitializedAsync()
@@ -81,7 +79,7 @@ else
 
         Item = await httpClient.GetFromJsonAsync<ItemEditViewModel>($"item/{Id}");
 
-        if (Id != null)
+        if (Id != Guid.Empty)
         {
             ItemType = (int)Item.Type;
         }
@@ -91,7 +89,6 @@ else
     protected async Task OnSave()
     {
         if (string.IsNullOrEmpty(Item.Description) ||
-            ItemType == -1 ||
             Item.Cost <= 0 ||
             Item.Price <= 0)
         {

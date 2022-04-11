@@ -1,0 +1,134 @@
+﻿@page "/employeelist/edit/{Id:guid?}"
+@using Gas_Station.Shared
+@using System.Globalization
+@using static Model.Enums
+@inject HttpClient httpClient
+@inject NavigationManager navManager
+
+
+@if (EmployeeItem == null)
+{
+    <p>Loading ...</p>
+}
+else
+{
+    @if (Id == Guid.Empty)
+    {
+        <h2>Add new pet</h2>
+    }
+    else
+    {
+        <h2>Edit @EmployeeItem.Surname @EmployeeItem.Name</h2>
+    }
+    @if (ShowingErrorMessages)
+    {
+        <div class="row">
+            <div class="alert alert-info" role="alert">
+                <p>There was an error with the input fields.</p>
+                <p>Please make sure that you have enter all the values correctly.</p>
+            </div>
+        </div>
+    }
+    <div class="row">
+        <div class="col-md-6">
+            <label for="employee-name">Name</label>
+            <input name="employee-name" class="form-control" @bind="@EmployeeItem.Name" placeholder="Employee Name" />
+        </div>
+         <div class="col-md-6">
+            <label for="employee-surname">Surname</label>
+            <input name="employee-surname" class="form-control" @bind="@EmployeeItem.Surname" placeholder="Surname Name" />
+        </div>
+    </div>
+    <div class="row mt-1">
+        <div class="col-md-6">
+            <label for="employee-type">Employee Type</label>
+            <select name="employee-type" class="form-select" @bind="EmployeeRole">
+                @foreach (var item in Enum.GetValues(typeof(EmployeeType)))
+                {
+                    <option value="@((int)item)">@item.ToString()</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="employee-salary">Salary per Month</label>
+            <input name="employee-salary" type="number" class="form-control" @bind="@EmployeeItem.SallaryPerMonth" placeholder="Employee Salary" min="0" />
+        </div>
+    </div>
+    <div class="row mt-1">
+        <div class="col-md-6">
+            <label for="employee-HireDateStart">Contract Date Start</label>
+            <input type="date" name="employee-HireDateStart" class="form-control" @bind="@EmployeeItem.HireDateStart" min="2022-01-01" max="2100-12-30"/>
+        </div>
+        <div class="col-md-6">
+            <label for="employee-HireDateEnd">Contract Date End</label>
+            <input type="date" name="employee-HireDateEnd" class="form-control" @bind="@EmployeeItem.HireDateEnd" min="2022-01-01" max="2099-12-30"/>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-6">
+            <button class="btn btn-success" @onclick="OnSave">Save</button>
+            <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public Guid? Id { get; set; }
+    EmployeeEditViewModel EmployeeItem { get; set; }
+    private int EmployeeRole { get; set; }
+    private bool ShowingErrorMessages = false;
+    bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id == null)
+        {
+            Id = Guid.Empty;
+        }
+
+        EmployeeItem = await httpClient.GetFromJsonAsync<EmployeeEditViewModel>($"employee/{Id}");
+
+        if (Id !=  Guid.Empty)
+        {
+            EmployeeRole = (int)EmployeeItem.Role;
+        }
+        else
+        {
+            EmployeeItem.HireDateStart = DateTime.Now;
+            EmployeeItem.HireDateEnd = DateTime.Now.AddDays(1);    
+        }
+
+    }
+
+    protected async Task OnSave()
+    {
+        if (string.IsNullOrEmpty(EmployeeItem.Name) ||
+            string.IsNullOrEmpty(EmployeeItem.Surname)||
+            DateTime.Compare(EmployeeItem.HireDateEnd, EmployeeItem.HireDateStart)<0 ||
+            EmployeeItem.SallaryPerMonth <= 0)
+        {
+            ShowingErrorMessages = true;
+            return;
+        }
+        ShowingErrorMessages = false;
+
+
+        HttpResponseMessage response;
+        EmployeeItem.Role = (EmployeeType)EmployeeRole;
+        if (Id == Guid.Empty)
+        {
+            response = await httpClient.PostAsJsonAsync("employee", EmployeeItem);
+        }
+        else
+        {
+            response = await httpClient.PutAsJsonAsync("employee", EmployeeItem);
+        }
+        response.EnsureSuccessStatusCode();
+        navManager.NavigateTo("employeelist");
+    }
+
+    protected void OnCancel()
+    {
+        navManager.NavigateTo("employeelist");
+    }
+}

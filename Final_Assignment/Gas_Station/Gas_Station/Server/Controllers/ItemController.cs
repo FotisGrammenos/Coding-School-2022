@@ -74,7 +74,7 @@ namespace Gas_Station.Server.Controllers
             itemUpadate.Cost = model.Cost;
             if(itemUpadate.Type != model.Type && itemUpadate.Description!=model.Description) 
             {
-                itemUpadate.Code = Guid.NewGuid().ToString("N").Substring(0, 7);
+                //itemUpadate.Code = Guid.NewGuid().ToString("N").Substring(0, 7);
                 itemUpadate.Type = model.Type;
                 itemUpadate.Description = model.Description;
             }

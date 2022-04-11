@@ -25,6 +25,7 @@ else
             <thead>
                 <tr>
                     <th>Description</th>
+                    <th>Code</th>
                     <th>Type</th>
                     <th>Cost</th>
                     <th>Price</th>
@@ -36,6 +37,7 @@ else
                 {
                     <tr>
                         <td>@item.Description</td>
+                        <td>@item.Code</td>
                         <td>@item.Type</td>
                         <td>@item.Cost</td>
                         <td>@item.Price</td>
@@ -65,14 +67,14 @@ else
         itemList = await httpClient.GetFromJsonAsync<List<ItemListViewModel>>("item");
     }
 
-    async Task AddItem()
+     protected async Task AddItem()
     {
         navigationManager.NavigateTo("/itemlist/edit");
     }
 
-    async Task DeleteItem(ItemListViewModel item)
+    protected async Task DeleteItem(ItemListViewModel item)
     {
-        var confirm = await jsRuntime.InvokeAsync<bool>("confirmDelete", null);
+        var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Do you want to delete it?");
         if (confirm)
         {
             var response = await httpClient.DeleteAsync($"pet/{item.Id}");
@@ -81,8 +83,8 @@ else
         }
     }
 
-    async Task EditItem(ItemListViewModel pet)
+    protected async Task EditItem(ItemListViewModel item)
     {
-        navigationManager.NavigateTo($"/itemlist/edit/{pet.Id}");
+        navigationManager.NavigateTo($"/itemlist/edit/{item.Id}");
     }
 }
