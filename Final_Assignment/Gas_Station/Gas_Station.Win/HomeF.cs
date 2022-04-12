@@ -16,30 +16,20 @@ namespace Gas_Station.Win
             
             var services = new ServiceCollection();
 
-            AddScopeRepos(services);
-
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri("https://localhost:7097/");
-
-
         }
 
         private void customersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var frmCustomerList = new CustomerListF( _httpClient);
+            var frmCustomerList = new CustomersListF( _httpClient);
             frmCustomerList.ShowDialog();
         }
 
-        private static void AddScopeRepos(IServiceCollection service)
+        private void itemsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            // Actual Service
-            //services.AddSingleton<IEntityRepo<Todo>, TodoRepo>()
-            //    .AddSingleton<IEntityRepo<TodoComment>, TodoCommentRepo>()
-            //    .AddSingleton<Main>();
-
-
-            service.AddScoped<IEntityRepo<Customer>, CustomerRepo>();
+            var frmCustomerList = new ItemListF(_httpClient);
+            frmCustomerList.ShowDialog();
         }
     }
 }

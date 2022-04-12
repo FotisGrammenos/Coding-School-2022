@@ -72,11 +72,12 @@ namespace Gas_Station.Server.Controllers
             if (itemUpadate == null) return NotFound();
             itemUpadate.Price = model.Price;
             itemUpadate.Cost = model.Cost;
-            if(itemUpadate.Type != model.Type && itemUpadate.Description!=model.Description) 
-            {
-                //itemUpadate.Code = Guid.NewGuid().ToString("N").Substring(0, 7);
+            itemUpadate.Description = model.Description;
+            if (itemUpadate.Type != model.Type) 
+            { 
+                itemUpadate.Code = Guid.NewGuid().ToString("N").Substring(0, 7);
                 itemUpadate.Type = model.Type;
-                itemUpadate.Description = model.Description;
+                
             }
 
             await _itemRepo.UpdateAsync(itemUpadate.ID, itemUpadate);

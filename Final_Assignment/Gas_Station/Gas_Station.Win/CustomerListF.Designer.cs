@@ -1,6 +1,6 @@
 ﻿namespace Gas_Station.Win
 {
-    partial class CustomerListF
+    partial class CustomersListF
     {
         /// <summary>
         /// Required designer variable.
@@ -32,6 +32,7 @@
             this.btnAddCustomer = new System.Windows.Forms.Button();
             this.btnEditCustomer = new System.Windows.Forms.Button();
             this.btnDeleteCustomer = new System.Windows.Forms.Button();
+            this.bntRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grvCustomerList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,9 +47,9 @@
             // 
             // btnAddCustomer
             // 
-            this.btnAddCustomer.Location = new System.Drawing.Point(12, 407);
+            this.btnAddCustomer.Location = new System.Drawing.Point(314, 407);
             this.btnAddCustomer.Name = "btnAddCustomer";
-            this.btnAddCustomer.Size = new System.Drawing.Size(200, 31);
+            this.btnAddCustomer.Size = new System.Drawing.Size(154, 31);
             this.btnAddCustomer.TabIndex = 2;
             this.btnAddCustomer.Text = "Add ";
             this.btnAddCustomer.UseVisualStyleBackColor = true;
@@ -56,9 +57,9 @@
             // 
             // btnEditCustomer
             // 
-            this.btnEditCustomer.Location = new System.Drawing.Point(297, 407);
+            this.btnEditCustomer.Location = new System.Drawing.Point(474, 407);
             this.btnEditCustomer.Name = "btnEditCustomer";
-            this.btnEditCustomer.Size = new System.Drawing.Size(200, 31);
+            this.btnEditCustomer.Size = new System.Drawing.Size(154, 31);
             this.btnEditCustomer.TabIndex = 3;
             this.btnEditCustomer.Text = "Edit ";
             this.btnEditCustomer.UseVisualStyleBackColor = true;
@@ -66,25 +67,36 @@
             // 
             // btnDeleteCustomer
             // 
-            this.btnDeleteCustomer.Location = new System.Drawing.Point(588, 407);
+            this.btnDeleteCustomer.Location = new System.Drawing.Point(634, 407);
             this.btnDeleteCustomer.Name = "btnDeleteCustomer";
-            this.btnDeleteCustomer.Size = new System.Drawing.Size(200, 31);
+            this.btnDeleteCustomer.Size = new System.Drawing.Size(154, 31);
             this.btnDeleteCustomer.TabIndex = 4;
             this.btnDeleteCustomer.Text = "Delete";
             this.btnDeleteCustomer.UseVisualStyleBackColor = true;
             this.btnDeleteCustomer.Click += new System.EventHandler(this.btnDeleteCustomer_Click);
             // 
-            // CustomerListF
+            // bntRefresh
+            // 
+            this.bntRefresh.Location = new System.Drawing.Point(12, 407);
+            this.bntRefresh.Name = "bntRefresh";
+            this.bntRefresh.Size = new System.Drawing.Size(154, 31);
+            this.bntRefresh.TabIndex = 5;
+            this.bntRefresh.Text = "Refresh";
+            this.bntRefresh.UseVisualStyleBackColor = true;
+            this.bntRefresh.Click += new System.EventHandler(this.bntRefresh_Click);
+            // 
+            // CustomersListF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.bntRefresh);
             this.Controls.Add(this.btnDeleteCustomer);
             this.Controls.Add(this.btnEditCustomer);
             this.Controls.Add(this.btnAddCustomer);
             this.Controls.Add(this.grvCustomerList);
-            this.Name = "CustomerListF";
-            this.Text = "CustomerListF";
+            this.Name = "CustomersListF";
+            this.Text = "Customers";
             this.Load += new System.EventHandler(this.CustomerListF_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grvCustomerList)).EndInit();
             this.ResumeLayout(false);
@@ -96,5 +108,6 @@
         private Button btnAddCustomer;
         private Button btnEditCustomer;
         private Button btnDeleteCustomer;
+        private Button bntRefresh;
     }
 }

@@ -15,14 +15,14 @@ using static System.Net.Http.HttpClient;
 
 namespace Gas_Station.Win
 {
-    public partial class CustomerListF : Form
+    public partial class CustomersListF : Form
     {
         
         private HttpClient _client;
         private List<CustomerListViewModel> _customerList;
         private CustomerListViewModel? _selectedCustomer;
 
-        public CustomerListF(HttpClient myhttpClient)
+        public CustomersListF(HttpClient myhttpClient)
         {
             InitializeComponent();
             _client = myhttpClient;
@@ -44,9 +44,6 @@ namespace Gas_Station.Win
             grvCustomerList.Update();
             grvCustomerList.Refresh();
             grvCustomerList.Columns["ID"].Visible = false;
-            grvCustomerList.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            grvCustomerList.Columns["Surname"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            grvCustomerList.Columns["CardNumber"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
 
@@ -86,5 +83,9 @@ namespace Gas_Station.Win
             await RefreshCustomerList();
         }
 
+        private async void bntRefresh_Click(object sender, EventArgs e)
+        {
+            await RefreshCustomerList();
+        }
     }
 }
