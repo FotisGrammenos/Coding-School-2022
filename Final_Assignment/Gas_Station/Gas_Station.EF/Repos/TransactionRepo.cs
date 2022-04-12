@@ -75,7 +75,7 @@ namespace Gas_Station.EF.Repos
             currTransaction.TransactionLines = entity.TransactionLines;
             currTransaction.TotalValue = entity.TotalValue;
             currTransaction.CustomerID = entity.CustomerID;
-            currTransaction.EmplouyeeID = entity.EmplouyeeID;
+            currTransaction.EmployeeID = entity.EmployeeID;
             currTransaction.PaymentMethod = entity.PaymentMethod;
         }
     }

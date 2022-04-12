@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Http.HttpClient;
 
-namespace Gas_Station.Win
+namespace Gas_Station.Win.CustomerForms
 {
     public partial class CustomersListF : Form
     {

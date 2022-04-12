@@ -1,4 +1,4 @@
-﻿namespace Gas_Station.Win
+﻿namespace Gas_Station.Win.CustomerForms
 {
     partial class CustomersListF
     {

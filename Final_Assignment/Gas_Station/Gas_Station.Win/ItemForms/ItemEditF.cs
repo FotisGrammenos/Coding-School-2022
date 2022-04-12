@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Model.Enums;
 
-namespace Gas_Station.Win
+namespace Gas_Station.Win.ItemForms
 {
     public partial class ItemEditF : Form
     {

@@ -11,7 +11,7 @@ namespace Model
     {
         public DateTime Date { get; set; }
 
-        public Guid EmplouyeeID { get; set; }
+        public Guid EmployeeID { get; set; }
 
         public Guid CustomerID { get; set; }
 

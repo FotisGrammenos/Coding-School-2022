@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Gas_Station.Win
+namespace Gas_Station.Win.CustomerForms
 {
     public partial class CustomerEditF : Form
     {

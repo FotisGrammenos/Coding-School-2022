@@ -77,7 +77,7 @@ else
         var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Do you want to delete it?");
         if (confirm)
         {
-            var response = await httpClient.DeleteAsync($"pet/{item.Id}");
+            var response = await httpClient.DeleteAsync($"item/{item.Id}");
             response.EnsureSuccessStatusCode();
             await LoadItemsFromServer();
         }

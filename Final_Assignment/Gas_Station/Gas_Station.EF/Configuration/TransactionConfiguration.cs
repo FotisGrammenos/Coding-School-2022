@@ -17,7 +17,7 @@ namespace Gas_Station.EF.Configuration
             builder.ToTable("Transactions");
             builder.HasKey(transaction => transaction.ID);
             builder.Property(transaction => transaction.CustomerID).IsRequired();
-            builder.Property(transaction => transaction.EmplouyeeID).IsRequired();
+            builder.Property(transaction => transaction.EmployeeID).IsRequired();
             builder.Property(transaction => transaction.TotalValue).HasPrecision(18, 3);
             builder.Property(transaction => transaction.PaymentMethod).HasConversion(paymentMethod => paymentMethod.ToString(),
                             paymentMethod => (PayMentMethod)Enum.Parse(typeof(PayMentMethod), paymentMethod)).HasMaxLength(15);

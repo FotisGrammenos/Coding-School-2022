@@ -1,5 +1,8 @@
 
 using Gas_Station.EF.Repos;
+using Gas_Station.Win.CustomerForms;
+using Gas_Station.Win.ItemForms;
+using Gas_Station.Win.TransactionFomrs;
 using Microsoft.Extensions.DependencyInjection;
 using Model;
 
@@ -29,6 +32,12 @@ namespace Gas_Station.Win
         private void itemsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var frmCustomerList = new ItemListF(_httpClient);
+            frmCustomerList.ShowDialog();
+        }
+
+        private void transactionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frmCustomerList = new TransactionList(_httpClient);
             frmCustomerList.ShowDialog();
         }
     }

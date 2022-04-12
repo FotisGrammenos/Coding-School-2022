@@ -14,6 +14,8 @@ namespace Gas_Station.Shared
 
         public string Name { get; set; }
 
+        public string FullName { get { return $"{Name} {Surname}"; } }
+
         public DateTime HireDateStart { get; set; }
 
         public DateTime HireDateEnd { get; set; }

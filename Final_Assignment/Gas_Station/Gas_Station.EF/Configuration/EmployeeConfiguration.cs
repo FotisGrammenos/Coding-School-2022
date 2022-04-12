@@ -24,7 +24,7 @@ namespace Gas_Station.EF.Configuration
 
             builder.HasMany(employee => employee.Transactions)
                 .WithOne(transaction => transaction.Employee)
-                .HasForeignKey(transaction => transaction.EmplouyeeID);
+                .HasForeignKey(transaction => transaction.EmployeeID);
         }
     }
 }
