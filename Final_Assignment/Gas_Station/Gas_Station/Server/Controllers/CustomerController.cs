@@ -47,7 +47,7 @@ namespace Gas_Station.Server.Controllers
         }
 
         [HttpPost]
-        public async Task Post(CustomerEditViewModel customer)
+        public async Task Post(CustomerListViewModel customer)
         {
             var newCustomer = new Customer()
             {
@@ -56,6 +56,10 @@ namespace Gas_Station.Server.Controllers
                 Surname = customer.Surname,
                 
             };
+            if (customer.CardNumber != null)
+            {
+                newCustomer.CardNumber = customer.CardNumber;
+            }
 
             await _customerRepo.AddAsync(newCustomer);
         }

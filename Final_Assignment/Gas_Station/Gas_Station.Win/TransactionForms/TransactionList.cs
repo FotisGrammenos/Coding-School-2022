@@ -66,7 +66,8 @@ namespace Gas_Station.Win.TransactionFomrs
             if (grvTransactionList.SelectedRows.Count != 1)
                 return;
 
-            _selectedTransaction = (TransactionEditViewModel)grvTransactionList.SelectedRows[index: 0].DataBoundItem;
+            var tmpTransaction = (TransactionListViewModel)grvTransactionList.SelectedRows[index: 0].DataBoundItem;
+            _selectedTransaction =await _client.GetFromJsonAsync<TransactionEditViewModel>($"transaction/{tmpTransaction.Id}");
             var frmTransactionEdit=new TransactionEditF(_client, _selectedTransaction);
             frmTransactionEdit.ShowDialog();
             await RefreshTransactionList();
@@ -94,5 +95,6 @@ namespace Gas_Station.Win.TransactionFomrs
             grvTransactionList.Columns["TotalValue"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             
         }
+
     }
 }

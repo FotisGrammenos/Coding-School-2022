@@ -23,8 +23,8 @@ namespace Gas_Station.Server.Controllers
             return trasnaction.Select(x => new TransactionListViewModel
             {
                 Id = x.ID,
-                CustomerFullName = x.Customer.Name + x.Customer.Surname,
-                EmployeeFullName = x.Employee.Name + x.Employee.Surname,
+                CustomerFullName =$"{x.Customer.Name} {x.Customer.Surname}",
+                EmployeeFullName =$"{x.Employee.Name} {x.Employee.Surname}",
                 PayMentMethod = x.PaymentMethod,
                 Date = x.Date,
                 TotalValue = x.TotalValue,
@@ -33,21 +33,22 @@ namespace Gas_Station.Server.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<TransactionListViewModel> Get(Guid id)
+        public async Task<TransactionEditViewModel> Get(Guid id)
         {
-            var getTransaction = new TransactionListViewModel();
+            var getTransaction = new TransactionEditViewModel();
             if (id != Guid.Empty)
             {
                 var existing = await _transactionRepo.GetByIdAsync(id);
                 if (existing == null) throw new ArgumentException($"Given id '{id}' was not found in database");
 
-                getTransaction.Id = existing.ID;
+                getTransaction.ID = existing.ID;
                 getTransaction.PayMentMethod = existing.PaymentMethod;
-                getTransaction.Date = existing.Date;
                 getTransaction.TotalValue = existing.TotalValue;
-                getTransaction.CustomerFullName = existing.Customer.Name + existing.Customer.Surname;
-                getTransaction.EmployeeFullName = existing.Employee.Name + existing.Employee.Surname;
-
+                getTransaction.CustomerFullName = $"{existing.Customer.Name} {existing.Customer.Surname}";
+                getTransaction.EmployeeFullName = $"{existing.Employee.Name} {existing.Employee.Surname}";
+                getTransaction.CustomerID = existing.Customer.ID;
+                getTransaction.EmployeeID = existing.Employee.ID;
+                getTransaction.TransactionLineList = existing.TransactionLines;
             }
             return getTransaction;
         }
@@ -78,8 +79,8 @@ namespace Gas_Station.Server.Controllers
             var transactionUpdate = await _transactionRepo.GetByIdAsync(transaction.ID);
             if (transactionUpdate == null) return NotFound();
             transactionUpdate.TransactionLines = transaction.TransactionLineList;
-            transactionUpdate.CustomerID = transactionUpdate.CustomerID;
-            transactionUpdate.EmployeeID = transactionUpdate.EmployeeID;
+            transactionUpdate.CustomerID = transaction.CustomerID;
+            transactionUpdate.EmployeeID = transaction.EmployeeID;
             transactionUpdate.PaymentMethod = transaction.PayMentMethod;
 
             await _transactionRepo.UpdateAsync(transactionUpdate.ID, transactionUpdate);

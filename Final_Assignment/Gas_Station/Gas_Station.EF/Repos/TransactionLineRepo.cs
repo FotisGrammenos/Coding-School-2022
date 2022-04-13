@@ -75,6 +75,7 @@ namespace Gas_Station.EF.Repos
             currTransactionLine.Quantity = entity.Quantity;
             currTransactionLine.NetValue = entity.NetValue;
             currTransactionLine.TotalValue = entity.TotalValue;
+            currTransactionLine.DiscountValue = entity.DiscountValue;
            
         }
     }

@@ -20,6 +20,8 @@ namespace Model
 
         public decimal DiscountPercent { get; set; }
 
+        public decimal DiscountValue { get; set; }
+
         public decimal TotalValue { get; set; }
 
         public Item Item { get; set; }

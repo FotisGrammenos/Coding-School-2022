@@ -21,6 +21,7 @@ namespace Gas_Station.EF.Configuration
             builder.Property(transactionLine => transactionLine.ItemPrice).HasPrecision(9, 3);
             builder.Property(transactionLine => transactionLine.NetValue).HasPrecision(9, 3);
             builder.Property(transactionLine => transactionLine.DiscountPercent).HasPrecision(9, 3);
+            builder.Property(transactionLine => transactionLine.DiscountValue).HasPrecision(9, 3);
             builder.Property(transactionLine => transactionLine.TotalValue).HasPrecision(9, 3);
             builder.Property(transactionLine => transactionLine.TotalValue).HasPrecision(9, 3);
            

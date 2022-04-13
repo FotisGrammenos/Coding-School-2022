@@ -44,11 +44,11 @@
             this.bntEditTL = new System.Windows.Forms.Button();
             this.bsTransaction = new System.Windows.Forms.BindingSource(this.components);
             this.ctrEmployee = new System.Windows.Forms.ComboBox();
-            this.bsEmployees = new System.Windows.Forms.BindingSource(this.components);
+            this.bsTransactionLine = new System.Windows.Forms.BindingSource(this.components);
             this.bntRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grvTransactionLine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsTransaction)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsEmployees)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTransactionLine)).BeginInit();
             this.SuspendLayout();
             // 
             // bntClose
@@ -59,6 +59,7 @@
             this.bntClose.TabIndex = 11;
             this.bntClose.Text = "Close";
             this.bntClose.UseVisualStyleBackColor = true;
+            this.bntClose.Click += new System.EventHandler(this.bntClose_Click);
             // 
             // bntSave
             // 
@@ -68,6 +69,7 @@
             this.bntSave.TabIndex = 10;
             this.bntSave.Text = "Save";
             this.bntSave.UseVisualStyleBackColor = true;
+            this.bntSave.Click += new System.EventHandler(this.bntSave_Click);
             // 
             // lblSurName
             // 
@@ -144,6 +146,7 @@
             this.bntDeleteTL.TabIndex = 22;
             this.bntDeleteTL.Text = "Delete";
             this.bntDeleteTL.UseVisualStyleBackColor = true;
+            this.bntDeleteTL.Click += new System.EventHandler(this.bntDeleteTL_Click);
             // 
             // bntAddTL
             // 
@@ -153,6 +156,7 @@
             this.bntAddTL.TabIndex = 21;
             this.bntAddTL.Text = "Add";
             this.bntAddTL.UseVisualStyleBackColor = true;
+            this.bntAddTL.Click += new System.EventHandler(this.bntAddTL_Click);
             // 
             // bntEditTL
             // 
@@ -162,6 +166,7 @@
             this.bntEditTL.TabIndex = 23;
             this.bntEditTL.Text = "Edit";
             this.bntEditTL.UseVisualStyleBackColor = true;
+            this.bntEditTL.Click += new System.EventHandler(this.bntEditTL_Click);
             // 
             // ctrEmployee
             // 
@@ -206,7 +211,7 @@
             this.Load += new System.EventHandler(this.TransactionEditF_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grvTransactionLine)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsTransaction)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsEmployees)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTransactionLine)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -231,5 +236,6 @@
         private ComboBox ctrEmployee;
         private BindingSource bsEmployees;
         private Button bntRefresh;
+        private BindingSource bsTransactionLine;
     }
 }

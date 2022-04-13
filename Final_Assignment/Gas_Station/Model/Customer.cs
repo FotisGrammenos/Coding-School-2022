@@ -12,7 +12,7 @@ namespace Model
 
 		public string Surname { get; set; }
 
-		public string CardNumber { get;}
+		public string CardNumber { get; set; }
 
 		public List<Transaction> Transactions { get; set; }
 
