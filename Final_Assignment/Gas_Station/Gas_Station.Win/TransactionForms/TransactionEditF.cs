@@ -45,7 +45,6 @@ namespace Gas_Station.Win.TransactionForms
             bsTransaction.DataSource = _transaction;
             bsTransactionLine.DataSource = _transaction.TransactionLineList;
             
-
             SetReadOnlyFields();
 
 
@@ -73,11 +72,8 @@ namespace Gas_Station.Win.TransactionForms
         {
             var employees = await _client.GetFromJsonAsync<List<EmployeeListViewModel>>("employee");
             _currEmployees = employees.Where(e=> e.HireDateStart<= DateTime.Now &&
-                                             e.HireDateEnd>DateTime.Now).ToList();
-
-            /*_currEmployees = employees.Where(e=> e.HireDateStart<= DateTime.Now &&
                 e.HireDateEnd > DateTime.Now && e.Role!=EmployeeType.Staff).ToList();
-            */
+            
         }
 
         private async Task LoadFromServerCustomer()
@@ -96,6 +92,7 @@ namespace Gas_Station.Win.TransactionForms
         {
             txtCustomerName.ReadOnly = true;
             txtTotalValue.ReadOnly = true;
+            grvTransactionLine.ReadOnly = true;
         }
 
         private void RefreshEmployeeList()
@@ -124,13 +121,15 @@ namespace Gas_Station.Win.TransactionForms
             _transaction.EmployeeID = LoadSelectedEmployee(ctrEmployee.SelectedIndex).Id;
             if (_transaction.ID == Guid.Empty)
             {
+                _transaction.ID = Guid.NewGuid();
+                _transaction.TotalValue = 1;
                 response = await _client.PostAsJsonAsync("transaction", _transaction);
             }
             else
             {
                 response = await _client.PutAsJsonAsync("transaction", _transaction);
             }
-           
+            response.EnsureSuccessStatusCode();
             Close();
         }
 
@@ -141,7 +140,7 @@ namespace Gas_Station.Win.TransactionForms
 
         private async void bntAddTL_Click(object sender, EventArgs e)
         {
-            var transacationLineF = new TransactionLineF(_client);
+            var transacationLineF = new TransactionLineF(_client, _transaction);
             transacationLineF.ShowDialog();
             await RefreshGridViewTransactionList();
         }
@@ -173,7 +172,7 @@ namespace Gas_Station.Win.TransactionForms
             grvTransactionLine.DataSource = bsTransactionLine;
             grvTransactionLine.Update();
             grvTransactionLine.Refresh();
-            grvTransactionLine.Columns["ID"].Visible = false;
+            grvTransactionLine.Columns["TransactionID"].Visible = false;
         }
     }
 }

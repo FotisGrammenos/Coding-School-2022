@@ -49,7 +49,13 @@ namespace Gas_Station.Win.TransactionForms
 
                 //TODO piase to error otan sou kanei close xoris save to customerAdd
                 //Newcustomer Den exei pliroforia gia to poios eiani
-                OpenTransaction(newCustomer);
+
+                customers = await _client.GetFromJsonAsync<List<CustomerListViewModel>>("customer");
+                existingCustomer = customers.SingleOrDefault(c => c.CardNumber.Equals(_cardNumber));
+                
+                if (existingCustomer is null) this.Close();
+                
+                OpenTransaction(existingCustomer);
 
             }
             else
@@ -72,7 +78,8 @@ namespace Gas_Station.Win.TransactionForms
             var transaction = new TransactionEditViewModel()
             {
                 CustomerID = mycustomer.Id,
-                TotalValue = 0
+                TotalValue = 0,
+                TransactionLineList = new()
             };
             var frameNewCustomer = new TransactionEditF(_client, transaction);
             frameNewCustomer.ShowDialog();

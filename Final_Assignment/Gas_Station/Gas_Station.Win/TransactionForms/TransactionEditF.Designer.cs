@@ -132,15 +132,15 @@
             // grvTransactionLine
             // 
             this.grvTransactionLine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grvTransactionLine.Location = new System.Drawing.Point(388, 41);
+            this.grvTransactionLine.Location = new System.Drawing.Point(26, 213);
             this.grvTransactionLine.Name = "grvTransactionLine";
             this.grvTransactionLine.RowTemplate.Height = 25;
-            this.grvTransactionLine.Size = new System.Drawing.Size(400, 183);
+            this.grvTransactionLine.Size = new System.Drawing.Size(762, 183);
             this.grvTransactionLine.TabIndex = 20;
             // 
             // bntDeleteTL
             // 
-            this.bntDeleteTL.Location = new System.Drawing.Point(700, 230);
+            this.bntDeleteTL.Location = new System.Drawing.Point(701, 186);
             this.bntDeleteTL.Name = "bntDeleteTL";
             this.bntDeleteTL.Size = new System.Drawing.Size(88, 21);
             this.bntDeleteTL.TabIndex = 22;
@@ -150,7 +150,7 @@
             // 
             // bntAddTL
             // 
-            this.bntAddTL.Location = new System.Drawing.Point(512, 230);
+            this.bntAddTL.Location = new System.Drawing.Point(513, 186);
             this.bntAddTL.Name = "bntAddTL";
             this.bntAddTL.Size = new System.Drawing.Size(88, 21);
             this.bntAddTL.TabIndex = 21;
@@ -160,7 +160,7 @@
             // 
             // bntEditTL
             // 
-            this.bntEditTL.Location = new System.Drawing.Point(606, 230);
+            this.bntEditTL.Location = new System.Drawing.Point(607, 186);
             this.bntEditTL.Name = "bntEditTL";
             this.bntEditTL.Size = new System.Drawing.Size(88, 21);
             this.bntEditTL.TabIndex = 23;

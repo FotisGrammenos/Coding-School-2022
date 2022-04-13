@@ -19,13 +19,14 @@ namespace Gas_Station.Win.TransactionLineForms
         private TransactionEditViewModel _transaction;
         private HttpClient _client;
         private List<ItemListViewModel> _items;
-        public TransactionLineF(HttpClient http)
+        public TransactionLineF(HttpClient http , TransactionEditViewModel transaction)
         {
             InitializeComponent();
             _client = http;
+            _transaction = transaction;
         }
 
-        public TransactionLineF(HttpClient http,TransactionLineViewModels transactionLine) : this(http)
+        public TransactionLineF(HttpClient http,TransactionLineViewModels transactionLine, TransactionEditViewModel transaction) : this(http,transaction)
         {
             _transactionLine = transactionLine;
         }
@@ -46,9 +47,9 @@ namespace Gas_Station.Win.TransactionLineForms
         {
             RefreshItemList();
 
-            ctrItem.DataBindings.Add(new Binding("EditValue",bsTransactionLine, "ItemDescription",true));
+            ctrItem.DataBindings.Add(new Binding("Text",bsTransactionLine, "ItemDescription",true));
 
-            ctrQuantity.DataBindings.Add(new Binding("EditValue", bsTransactionLine, "Quentity", true));
+            ctrQuantity.DataBindings.Add(new Binding("Text", bsTransactionLine, "Quentity", true));
         }
 
         private async Task LoadItemFromServer()
@@ -73,7 +74,7 @@ namespace Gas_Station.Win.TransactionLineForms
 
         private async void bntSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(ctrItem.Text) || ctrQuantity.Value >= 0)
+            if (string.IsNullOrWhiteSpace(ctrItem.Text) || ctrQuantity.Value <= 0)
                 return;
             if(_transactionLine.ID== Guid.Empty)
             {
