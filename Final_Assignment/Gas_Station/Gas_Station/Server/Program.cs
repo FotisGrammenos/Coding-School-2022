@@ -1,5 +1,6 @@
 using Gas_Station.EF.Context;
 using Gas_Station.EF.Repos;
+using Handlers;
 using Microsoft.AspNetCore.ResponseCompression;
 using Model;
 
@@ -16,6 +17,8 @@ builder.Services.AddScoped<IEntityRepo<Item>, ItemRepo>();
 builder.Services.AddScoped<IEntityRepo<Employee>, EmployeeRepo>();
 builder.Services.AddScoped<IEntityRepo<Transaction>, TransactionRepo>();
 builder.Services.AddScoped<IEntityRepo<TransactionLine>, TransactionLineRepo>();
+
+builder.Services.AddScoped<TransactionHandler>();
 
 var app = builder.Build();
 

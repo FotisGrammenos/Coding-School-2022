@@ -1,5 +1,6 @@
 ﻿using Gas_Station.EF.Repos;
 using Gas_Station.Shared;
+using Handlers;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 
@@ -10,10 +11,13 @@ namespace Gas_Station.Server.Controllers
     public class TransactionController : ControllerBase
     {
         private readonly IEntityRepo<Transaction> _transactionRepo;
+        private readonly IEntityRepo<Item> _itemRepo;
 
-        public TransactionController(IEntityRepo<Transaction> transactionRepo)
+
+        public TransactionController(IEntityRepo<Transaction> transactionRepo, IEntityRepo<Item> transactionHandler)
         {
             _transactionRepo = transactionRepo;
+            _itemRepo = transactionHandler;
         }
 
         [HttpGet]
@@ -40,6 +44,7 @@ namespace Gas_Station.Server.Controllers
             {
                 var existing = await _transactionRepo.GetByIdAsync(id);
                 if (existing == null) throw new ArgumentException($"Given id '{id}' was not found in database");
+                //var itemInside;
 
                 getTransaction.ID = existing.ID;
                 getTransaction.PayMentMethod = existing.PaymentMethod;
@@ -48,7 +53,8 @@ namespace Gas_Station.Server.Controllers
                 getTransaction.EmployeeFullName = $"{existing.Employee.Name} {existing.Employee.Surname}";
                 getTransaction.CustomerID = existing.Customer.ID;
                 getTransaction.EmployeeID = existing.Employee.ID;
-                getTransaction.TransactionLineList = existing.TransactionLines;
+                getTransaction.TransactionLineList = new();
+                CovertTransactionLineToViewModel(getTransaction, existing);
             }
             return getTransaction;
         }
@@ -62,15 +68,15 @@ namespace Gas_Station.Server.Controllers
                 CustomerID = model.CustomerID,
                 EmployeeID = model.EmployeeID,
                 PaymentMethod = model.PayMentMethod,
-
-                // TODO: Load state from previously suspended application
-                //TotalValue = model.TotalValue,
-
-                TransactionLines = model.TransactionLineList
+                TransactionLines = new()
 
             };
+            CovertViewModelLineToTransactionLine(model,newTransaction);
+            
+            
+            
 
-            await _transactionRepo.AddAsync(newTransaction);
+             await _transactionRepo.AddAsync(newTransaction);
         }
 
         [HttpPut]
@@ -78,10 +84,12 @@ namespace Gas_Station.Server.Controllers
         {
             var transactionUpdate = await _transactionRepo.GetByIdAsync(transaction.ID);
             if (transactionUpdate == null) return NotFound();
-            transactionUpdate.TransactionLines = transaction.TransactionLineList;
             transactionUpdate.CustomerID = transaction.CustomerID;
             transactionUpdate.EmployeeID = transaction.EmployeeID;
             transactionUpdate.PaymentMethod = transaction.PayMentMethod;
+            transactionUpdate.TransactionLines = new();
+            CovertViewModelLineToTransactionLine(transaction, transactionUpdate);
+
 
             await _transactionRepo.UpdateAsync(transactionUpdate.ID, transactionUpdate);
 
@@ -92,6 +100,44 @@ namespace Gas_Station.Server.Controllers
         public async Task Delete(Guid id)
         {
             await _transactionRepo.DeleteAsync(id);
+        }
+
+        private void CovertViewModelLineToTransactionLine(TransactionEditViewModel model, Transaction newTransaction)
+        {
+            foreach (var tl in model.TransactionLineList)
+            {
+                var helper = new TransactionLine()
+                {
+                    ItemID = tl.ItemID,
+                    ItemPrice = tl.ItemPrice,
+                    NetValue = tl.NetValue,
+                    DiscountPercent = tl.DiscountPercent,
+                    DiscountValue = tl.DiscountValue,
+                    TotalValue = tl.TotalValue,
+                    Quantity = tl.Quentity,
+                };
+                newTransaction.TransactionLines.Add(helper);
+            }
+        }
+
+        private void CovertTransactionLineToViewModel(TransactionEditViewModel model, Transaction newTransaction)
+        {
+            foreach (var tl in newTransaction.TransactionLines)
+            {
+                var helper = new TransactionLineEditViewModel()
+                {
+
+                    ItemID = tl.ItemID,
+                    ItemPrice = tl.ItemPrice,
+                    NetValue = tl.NetValue,
+                    DiscountPercent = tl.DiscountPercent,
+                    DiscountValue = tl.DiscountValue,
+                    TotalValue = tl.TotalValue,
+                    Quentity = tl.Quantity,
+                    ItemDescription = tl.Item.Description
+                };
+                model.TransactionLineList.Add(helper);
+            }
         }
     }
 }

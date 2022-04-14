@@ -38,6 +38,7 @@
             // 
             // grvCustomerList
             // 
+            this.grvCustomerList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grvCustomerList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grvCustomerList.Location = new System.Drawing.Point(12, 12);
             this.grvCustomerList.Name = "grvCustomerList";

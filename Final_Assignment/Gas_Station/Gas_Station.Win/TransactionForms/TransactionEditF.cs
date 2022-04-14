@@ -1,5 +1,6 @@
 ﻿using Gas_Station.Shared;
 using Gas_Station.Win.TransactionLineForms;
+using Handlers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,13 +21,15 @@ namespace Gas_Station.Win.TransactionForms
         private TransactionEditViewModel _transaction;
         private List<EmployeeListViewModel> _currEmployees;
         private TransactionLineEditViewModel _selectedTransactionLine;
-        public TransactionEditF(HttpClient httpClient)
+        private TransactionHandler _handler;
+        public TransactionEditF(HttpClient httpClient, TransactionHandler handler)
         {
             InitializeComponent();
             _client = httpClient;   
+            _handler = handler;
         }
 
-        public TransactionEditF(HttpClient httpClient, TransactionEditViewModel transaction): this(httpClient)
+        public TransactionEditF(HttpClient httpClient, TransactionEditViewModel transaction,TransactionHandler handler): this(httpClient, handler)
         {
             _transaction = transaction;
         }
@@ -37,7 +40,7 @@ namespace Gas_Station.Win.TransactionForms
             {
                 _transaction =new TransactionEditViewModel();
                 _transaction.TransactionLineList = new();
-               // await _client.PostAsJsonAsync("transaction", _transaction);
+               
             }
             await LoadFormServerEmployeeList();
             await LoadFromServerCustomer();
@@ -47,6 +50,7 @@ namespace Gas_Station.Win.TransactionForms
             
             SetReadOnlyFields();
 
+            RefreshGridViewTransactionList();
 
             SetDataBindings();
         }
@@ -55,8 +59,8 @@ namespace Gas_Station.Win.TransactionForms
         {
             
             txtCustomerName.DataBindings.Add(new Binding("Text", bsTransaction, "CustomerFullName", true));
-            txtTotalValue.DataBindings.Add(new Binding("Text", bsTransaction, "TotalValue"));
-
+            txtTotalValue.DataBindings.Add(new Binding("Text", bsTransaction, "TotalValue", true));
+            
 
             //TODO elen3e an ta bindings einai swsta
             RefreshEmployeeList();
@@ -121,8 +125,6 @@ namespace Gas_Station.Win.TransactionForms
             _transaction.EmployeeID = LoadSelectedEmployee(ctrEmployee.SelectedIndex).Id;
             if (_transaction.ID == Guid.Empty)
             {
-                _transaction.ID = Guid.NewGuid();
-                _transaction.TotalValue = 1;
                 response = await _client.PostAsJsonAsync("transaction", _transaction);
             }
             else
@@ -140,7 +142,7 @@ namespace Gas_Station.Win.TransactionForms
 
         private async void bntAddTL_Click(object sender, EventArgs e)
         {
-            var transacationLineF = new TransactionLineF(_client, _transaction);
+            var transacationLineF = new TransactionLineF(_client, _transaction, _handler);
             transacationLineF.ShowDialog();
             await RefreshGridViewTransactionList();
         }
@@ -161,18 +163,40 @@ namespace Gas_Station.Win.TransactionForms
             if (grvTransactionLine.SelectedRows.Count != 1)
                 return;
 
-            var tmpTransactionLine = (TransactionLineEditViewModel)grvTransactionLine.SelectedRows[index: 0].DataBoundItem;
-            await _client.DeleteAsync($"transactionLine/{tmpTransactionLine.ID}");
+            _selectedTransactionLine = (TransactionLineEditViewModel)grvTransactionLine.SelectedRows[index: 0].DataBoundItem;
+            _transaction.TransactionLineList.Remove(_selectedTransactionLine);
             await RefreshGridViewTransactionList();
         }
 
         private async Task RefreshGridViewTransactionList()
         {
             grvTransactionLine.DataSource = null;
-            grvTransactionLine.DataSource = bsTransactionLine;
+
+            grvTransactionLine.DataSource = _transaction.TransactionLineList;
             grvTransactionLine.Update();
             grvTransactionLine.Refresh();
+            
             grvTransactionLine.Columns["TransactionID"].Visible = false;
+            grvTransactionLine.Columns["ID"].Visible = false;
+            grvTransactionLine.Columns["ItemID"].Visible = false;
+            
+            TotalValueCalc();
+        }
+    
+        private void TotalValueCalc()
+        {
+            _transaction.TotalValue=_handler.CalculateTransactionTotalValue(_transaction.TransactionLineList);
+            txtTotalValue.Text = _transaction.TotalValue.ToString();
+            SetPaymentMethod(_transaction.TotalValue);
+        }
+        private void SetPaymentMethod(decimal totalValue)
+        {
+            ctrPayMethod.Enabled = true;
+            if (!_handler.CheckCardPaymentAvail(totalValue))
+            {
+                ctrPayMethod.SelectedIndex = 2;
+                ctrPayMethod.Enabled = false;
+            }
         }
     }
 }

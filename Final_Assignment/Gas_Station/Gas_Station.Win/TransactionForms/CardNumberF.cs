@@ -1,4 +1,5 @@
 ﻿using Gas_Station.Shared;
+using Handlers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,11 +18,13 @@ namespace Gas_Station.Win.TransactionForms
         
         private string _cardNumber;
         private HttpClient _client;
+        private TransactionHandler _handler;
 
-        public CardNumberF(HttpClient client)
+        public CardNumberF(HttpClient client, TransactionHandler Handler)
         {
             InitializeComponent();
             _client = client;
+            _handler = Handler;
         }
 
         private async void bntContiue_Click(object sender, EventArgs e)
@@ -55,13 +58,10 @@ namespace Gas_Station.Win.TransactionForms
                 
                 if (existingCustomer is null) this.Close();
                 
-                OpenTransaction(existingCustomer);
+            }
+             OpenTransaction(existingCustomer);
 
-            }
-            else
-            {
-                OpenTransaction(existingCustomer);
-            }
+            
         }
 
         private bool IsValid(string code)
@@ -81,7 +81,7 @@ namespace Gas_Station.Win.TransactionForms
                 TotalValue = 0,
                 TransactionLineList = new()
             };
-            var frameNewCustomer = new TransactionEditF(_client, transaction);
+            var frameNewCustomer = new TransactionEditF(_client, transaction, _handler);
             frameNewCustomer.ShowDialog();
         }
     }

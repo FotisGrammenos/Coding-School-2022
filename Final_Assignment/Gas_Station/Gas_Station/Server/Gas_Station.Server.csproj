@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Gas_Station.EF\Gas_Station.EF.csproj" />
+    <ProjectReference Include="..\..\Handlers\Handlers.csproj" />
     <ProjectReference Include="..\..\Model\Model.csproj" />
     <ProjectReference Include="..\Client\Gas_Station.Client.csproj" />
     <ProjectReference Include="..\Shared\Gas_Station.Shared.csproj" />

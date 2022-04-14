@@ -131,9 +131,12 @@
             // 
             // grvTransactionLine
             // 
+            this.grvTransactionLine.AllowUserToAddRows = false;
+            this.grvTransactionLine.AllowUserToDeleteRows = false;
             this.grvTransactionLine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grvTransactionLine.Location = new System.Drawing.Point(26, 213);
             this.grvTransactionLine.Name = "grvTransactionLine";
+            this.grvTransactionLine.ReadOnly = true;
             this.grvTransactionLine.RowTemplate.Height = 25;
             this.grvTransactionLine.Size = new System.Drawing.Size(762, 183);
             this.grvTransactionLine.TabIndex = 20;

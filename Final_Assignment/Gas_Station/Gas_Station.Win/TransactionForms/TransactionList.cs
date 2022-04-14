@@ -1,5 +1,6 @@
 ﻿using Gas_Station.Shared;
 using Gas_Station.Win.TransactionForms;
+using Handlers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,10 +19,12 @@ namespace Gas_Station.Win.TransactionFomrs
         private TransactionEditViewModel? _selectedTransaction;
         private List<TransactionListViewModel> _transactionList;
         private HttpClient _client;
-        public TransactionList(HttpClient httpClient)
+        private TransactionHandler _handler;
+        public TransactionList(HttpClient httpClient, TransactionHandler handler)
         {
             InitializeComponent();
             _client = httpClient;
+            _handler = handler;
         }
 
         private async Task LoadItemsFromServer()
@@ -56,7 +59,7 @@ namespace Gas_Station.Win.TransactionFomrs
 
         private async void btnAddTransaction_Click(object sender, EventArgs e)
         {
-            var carNumber = new CardNumberF(_client);
+            var carNumber = new CardNumberF(_client,_handler);
             carNumber.ShowDialog();
             await RefreshTransactionList();
         }
@@ -68,14 +71,14 @@ namespace Gas_Station.Win.TransactionFomrs
 
             var tmpTransaction = (TransactionListViewModel)grvTransactionList.SelectedRows[index: 0].DataBoundItem;
             _selectedTransaction =await _client.GetFromJsonAsync<TransactionEditViewModel>($"transaction/{tmpTransaction.Id}");
-            var frmTransactionEdit=new TransactionEditF(_client, _selectedTransaction);
+            var frmTransactionEdit=new TransactionEditF(_client, _selectedTransaction, _handler);
             frmTransactionEdit.ShowDialog();
             await RefreshTransactionList();
         }
 
         private void btnDeleteTransaction_Click(object sender, EventArgs e)
         {
-            //TODO
+            
         }
 
         private void SetCollumsGridView()

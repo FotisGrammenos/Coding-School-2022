@@ -29,6 +29,8 @@ namespace Gas_Station.Shared
         public Guid ID { get; set; }
         public Guid ItemID { get; set; }
 
+        public string ItemDescription { get; set; }
+
         public Guid TransactionID { get; set; }
         public decimal Quentity { get; set; }
 

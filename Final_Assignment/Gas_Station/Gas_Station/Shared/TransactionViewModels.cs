@@ -39,6 +39,6 @@ namespace Gas_Station.Shared
 
         public decimal TotalValue { get; set; }
 
-        public List<TransactionLine> TransactionLineList { get; set; }
+        public List<TransactionLineEditViewModel> TransactionLineList { get; set; }
     }
 }

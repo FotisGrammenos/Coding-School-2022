@@ -3,6 +3,7 @@ using Gas_Station.EF.Repos;
 using Gas_Station.Win.CustomerForms;
 using Gas_Station.Win.ItemForms;
 using Gas_Station.Win.TransactionFomrs;
+using Handlers;
 using Microsoft.Extensions.DependencyInjection;
 using Model;
 
@@ -13,12 +14,14 @@ namespace Gas_Station.Win
         private readonly IEntityRepo<Customer> _customerRepo;
 
         private HttpClient _httpClient;
-        public HomeF()
+        private TransactionHandler _handler;
+        public HomeF(TransactionHandler handler)
         {
             InitializeComponent();
             
             var services = new ServiceCollection();
-
+            
+            _handler= handler;
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri("https://localhost:7097/");
         }
@@ -37,7 +40,7 @@ namespace Gas_Station.Win
 
         private void transactionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var frmCustomerList = new TransactionList(_httpClient);
+            var frmCustomerList = new TransactionList(_httpClient,_handler);
             frmCustomerList.ShowDialog();
         }
     }

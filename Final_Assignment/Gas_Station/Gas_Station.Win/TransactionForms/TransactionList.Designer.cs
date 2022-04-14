@@ -78,6 +78,7 @@
             // 
             // grvTransactionList
             // 
+            this.grvTransactionList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grvTransactionList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grvTransactionList.Location = new System.Drawing.Point(12, 12);
             this.grvTransactionList.Name = "grvTransactionList";

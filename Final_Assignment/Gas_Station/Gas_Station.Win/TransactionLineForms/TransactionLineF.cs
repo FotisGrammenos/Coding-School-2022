@@ -1,4 +1,5 @@
 ﻿using Gas_Station.Shared;
+using Handlers;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -18,17 +19,22 @@ namespace Gas_Station.Win.TransactionLineForms
         private TransactionLineViewModels _transactionLine;
         private TransactionEditViewModel _transaction;
         private HttpClient _client;
+        private TransactionHandler _handler;
         private List<ItemListViewModel> _items;
-        public TransactionLineF(HttpClient http , TransactionEditViewModel transaction)
+
+      
+        public TransactionLineF(HttpClient http , TransactionEditViewModel transaction , TransactionHandler transactionHandler)
         {
             InitializeComponent();
             _client = http;
             _transaction = transaction;
+            _handler = transactionHandler;
         }
 
-        public TransactionLineF(HttpClient http,TransactionLineViewModels transactionLine, TransactionEditViewModel transaction) : this(http,transaction)
+        public TransactionLineF(HttpClient http,TransactionLineViewModels transactionLine, TransactionEditViewModel transaction, TransactionHandler transactionHandler) : this(http,transaction, transactionHandler)
         {
             _transactionLine = transactionLine;
+            _handler = transactionHandler;
         }
 
         private async void TransactionLineF_Load(object sender, EventArgs e)
@@ -55,6 +61,10 @@ namespace Gas_Station.Win.TransactionLineForms
         private async Task LoadItemFromServer()
         {
             _items = await _client.GetFromJsonAsync<List<ItemListViewModel>>("item");
+            if (_handler.CheckFuelExist(_transaction.TransactionLineList, _items))
+            {
+                _items=_items.Where(i=>i.Type !=Enums.ItemType.Fuel).ToList();
+            }
         }
 
         private void RefreshItemList()
@@ -78,9 +88,21 @@ namespace Gas_Station.Win.TransactionLineForms
                 return;
             if(_transactionLine.ID== Guid.Empty)
             {
+                //-----business Rule-------------------------------------------------//
+                _transactionLine.ItemPrice = _items.ElementAt(ctrItem.SelectedIndex).Price;
+                _transactionLine.NetValue = _handler.CalculateNetValue(_transactionLine.Quentity, _transactionLine.ItemPrice);
+
+                if (_items.ElementAt(ctrItem.SelectedIndex).Type == Enums.ItemType.Fuel)
+                {
+                    _transactionLine.DiscountValue = _handler.ApplyTenPercentDiscount(_transactionLine.NetValue);
+                    if (_transactionLine.DiscountValue > 0) _transactionLine.DiscountPercent = 0.1m;
+                }
+
+                _transactionLine.TotalValue = _handler.CalculateLineTotalValue(_transactionLine.DiscountValue, _transactionLine.NetValue);
+
 
                 _transaction.TransactionLineList.Add(ConvertToTransactionLine(_transactionLine));
-                //var response = await _client.PostAsJsonAsync("transactionline", _transactionLine);
+                
             }
             else
             {
@@ -97,19 +119,22 @@ namespace Gas_Station.Win.TransactionLineForms
             Close();
         }
 
-        private TransactionLine ConvertToTransactionLine( TransactionLineViewModels model) 
+        private TransactionLineEditViewModel ConvertToTransactionLine( TransactionLineViewModels model) 
         {
-            return new TransactionLine()
+            return new TransactionLineEditViewModel()
             {
                 ID = model.ID,
                 DiscountPercent = model.DiscountPercent,
                 DiscountValue = model.DiscountValue,
                 ItemID = _items.ElementAt(ctrItem.SelectedIndex).Id,
-                Quantity=model.Quentity,
+                Quentity=model.Quentity,
                 ItemPrice=model.ItemPrice,
                 NetValue=model.NetValue,
                 TotalValue=model.TotalValue, 
+                ItemDescription=model.ItemDescription,
             };
         }
+
+        
     }
 }

@@ -34,6 +34,7 @@ namespace Gas_Station.EF.Repos
             return await _context.Transactions.Include(trasaction=>trasaction.Customer)
                                                     .Include(trasaction => trasaction.Employee)
                                                     .Include(trasaction=> trasaction.TransactionLines)
+                                                    .ThenInclude(transactionLine => transactionLine.Item)
                                                     .ToListAsync();
         }
 
@@ -42,6 +43,7 @@ namespace Gas_Station.EF.Repos
             return await _context.Transactions.Include(trasaction => trasaction.Customer)
                                                     .Include(trasaction => trasaction.Employee)
                                                     .Include(trasaction => trasaction.TransactionLines)
+                                                    .ThenInclude(transactionLine => transactionLine.Item)
                                                     .SingleOrDefaultAsync(trasaction => trasaction.ID == id);
         }
 
