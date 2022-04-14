@@ -50,9 +50,11 @@ namespace Gas_Station.Win.TransactionForms
             
             SetReadOnlyFields();
 
-            RefreshGridViewTransactionList();
+            
 
             SetDataBindings();
+
+            RefreshGridViewTransactionList();
         }
 
         private void SetDataBindings()
@@ -144,18 +146,7 @@ namespace Gas_Station.Win.TransactionForms
         {
             var transacationLineF = new TransactionLineF(_client, _transaction, _handler);
             transacationLineF.ShowDialog();
-            await RefreshGridViewTransactionList();
-        }
-
-        private async void bntEditTL_Click(object sender, EventArgs e)
-        {
-            if (grvTransactionLine.SelectedRows.Count != 1)
-                return;
-
-           // var tmpTransactionLine = (TransactionLineEdViewModel)grvTransactionLine.SelectedRows[index: 0].DataBoundItem;
-            //var transacationLineF = new TransactionLineF(_client, _selectedTransactionLine);
-            //transacationLineF.ShowDialog();
-            await RefreshGridViewTransactionList();
+            RefreshGridViewTransactionList();
         }
 
         private async void bntDeleteTL_Click(object sender, EventArgs e)
@@ -165,16 +156,14 @@ namespace Gas_Station.Win.TransactionForms
 
             _selectedTransactionLine = (TransactionLineEditViewModel)grvTransactionLine.SelectedRows[index: 0].DataBoundItem;
             _transaction.TransactionLineList.Remove(_selectedTransactionLine);
-            await RefreshGridViewTransactionList();
+            RefreshGridViewTransactionList();
         }
 
-        private async Task RefreshGridViewTransactionList()
+        private async void RefreshGridViewTransactionList()
         {
             grvTransactionLine.DataSource = null;
 
-            grvTransactionLine.DataSource = _transaction.TransactionLineList;
-            grvTransactionLine.Update();
-            grvTransactionLine.Refresh();
+            grvTransactionLine.DataSource = bsTransactionLine;
             
             grvTransactionLine.Columns["TransactionID"].Visible = false;
             grvTransactionLine.Columns["ID"].Visible = false;

@@ -43,7 +43,7 @@ namespace Gas_Station.EF.Repos
             return await _context.Transactions.Include(trasaction => trasaction.Customer)
                                                     .Include(trasaction => trasaction.Employee)
                                                     .Include(trasaction => trasaction.TransactionLines)
-                                                    .ThenInclude(transactionLine => transactionLine.Item)
+                                                    .ThenInclude(transactionLine => transactionLine.Item)    
                                                     .SingleOrDefaultAsync(trasaction => trasaction.ID == id);
         }
 
@@ -70,7 +70,7 @@ namespace Gas_Station.EF.Repos
 
         private void UpdateLogic(Guid id, Transaction entity)
         {
-            var currTransaction = _context.Transactions.SingleOrDefault(trasaction => trasaction.ID == id);
+            var currTransaction = _context.Transactions.Include(x=>x.TransactionLines).SingleOrDefault(trasaction => trasaction.ID == id);
             if (currTransaction is null)
                 throw new ArgumentException($"Given id '{id}' was not found in database");
             currTransaction.Date = entity.Date;

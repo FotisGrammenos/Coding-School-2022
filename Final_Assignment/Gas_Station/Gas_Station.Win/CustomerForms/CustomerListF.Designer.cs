@@ -33,6 +33,7 @@
             this.btnEditCustomer = new System.Windows.Forms.Button();
             this.btnDeleteCustomer = new System.Windows.Forms.Button();
             this.bntRefresh = new System.Windows.Forms.Button();
+            this.sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             ((System.ComponentModel.ISupportInitialize)(this.grvCustomerList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,6 +87,13 @@
             this.bntRefresh.UseVisualStyleBackColor = true;
             this.bntRefresh.Click += new System.EventHandler(this.bntRefresh_Click);
             // 
+            // sqlCommand1
+            // 
+            this.sqlCommand1.CommandTimeout = 30;
+            this.sqlCommand1.Connection = null;
+            this.sqlCommand1.Notification = null;
+            this.sqlCommand1.Transaction = null;
+            // 
             // CustomersListF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -110,5 +118,6 @@
         private Button btnEditCustomer;
         private Button btnDeleteCustomer;
         private Button bntRefresh;
+        private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
     }
 }

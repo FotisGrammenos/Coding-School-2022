@@ -21,7 +21,10 @@ namespace Gas_Station.Shared
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-     
+        public string CardNumber { get; set; }=String.Empty;
+
+        
+
     }
 
 }

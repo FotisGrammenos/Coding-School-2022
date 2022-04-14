@@ -43,7 +43,7 @@ namespace Gas_Station.Win.TransactionForms
             var existingCustomer = customers.SingleOrDefault(c => c.CardNumber.Equals(_cardNumber));
             if (existingCustomer is null)
             {
-                var newCustomer = new CustomerListViewModel()
+                var newCustomer = new CustomerEditViewModel()
                 {
                     CardNumber = _cardNumber,
                 };
@@ -56,7 +56,7 @@ namespace Gas_Station.Win.TransactionForms
                 customers = await _client.GetFromJsonAsync<List<CustomerListViewModel>>("customer");
                 existingCustomer = customers.SingleOrDefault(c => c.CardNumber.Equals(_cardNumber));
                 
-                if (existingCustomer is null) this.Close();
+                if (existingCustomer is null) return;
                 
             }
              OpenTransaction(existingCustomer);

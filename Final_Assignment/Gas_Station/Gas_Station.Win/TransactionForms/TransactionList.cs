@@ -32,7 +32,7 @@ namespace Gas_Station.Win.TransactionFomrs
             _transactionList =await _client.GetFromJsonAsync<List<TransactionListViewModel>>("transaction");
         }
 
-        private async Task RefreshTransactionList()
+        private async void RefreshTransactionList()
         {
             grvTransactionList.DataSource = null;
 
@@ -47,21 +47,21 @@ namespace Gas_Station.Win.TransactionFomrs
 
         private async void TransactionListF_Load(object sender, EventArgs e)
         {
-            await RefreshTransactionList();
+            RefreshTransactionList();
 
             grvTransactionList.ReadOnly = true;
         }
 
         private async void bntRefresh_Click(object sender, EventArgs e)
         {
-            await RefreshTransactionList();
+            RefreshTransactionList();
         }
 
         private async void btnAddTransaction_Click(object sender, EventArgs e)
         {
             var carNumber = new CardNumberF(_client,_handler);
             carNumber.ShowDialog();
-            await RefreshTransactionList();
+            RefreshTransactionList();
         }
 
         private async void btnEditTransaction_Click(object sender, EventArgs e)
@@ -73,30 +73,29 @@ namespace Gas_Station.Win.TransactionFomrs
             _selectedTransaction =await _client.GetFromJsonAsync<TransactionEditViewModel>($"transaction/{tmpTransaction.Id}");
             var frmTransactionEdit=new TransactionEditF(_client, _selectedTransaction, _handler);
             frmTransactionEdit.ShowDialog();
-            await RefreshTransactionList();
+            RefreshTransactionList();
         }
 
-        private void btnDeleteTransaction_Click(object sender, EventArgs e)
+        private async void btnDeleteTransaction_Click(object sender, EventArgs e)
         {
-            
+            if (grvTransactionList.SelectedRows.Count != 1)
+                return;
+
+            var tmpTransaction = (TransactionListViewModel)grvTransactionList.SelectedRows[index: 0].DataBoundItem;
+            _client.DeleteAsync($"transaction/{tmpTransaction.Id}");
+            RefreshTransactionList();
         }
 
         private void SetCollumsGridView()
-        {
-            grvTransactionList.Columns["Date"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-
-            grvTransactionList.Columns["CustomerFullName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+        { 
             grvTransactionList.Columns["CustomerFullName"].HeaderText = "Customer";
-
-            grvTransactionList.Columns["EmployeeFullName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+  
             grvTransactionList.Columns["EmployeeFullName"].HeaderText = "Employee";
 
             grvTransactionList.Columns["PayMentMethod"].HeaderText = "Payment-Method";
-            grvTransactionList.Columns["PayMentMethod"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-
+         
             grvTransactionList.Columns["TotalValue"].HeaderText = "Total Value";
-            grvTransactionList.Columns["TotalValue"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            
+             
         }
 
     }

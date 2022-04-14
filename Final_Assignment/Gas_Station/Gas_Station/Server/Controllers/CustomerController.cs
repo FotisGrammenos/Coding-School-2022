@@ -30,9 +30,9 @@ namespace Gas_Station.Server.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<CustomerListViewModel> Get(Guid id)
+        public async Task<CustomerEditViewModel> Get(Guid id)
         {
-            var getCustomer = new CustomerListViewModel();
+            var getCustomer = new CustomerEditViewModel();
             if (id != Guid.Empty)
             {
                 var existing = await _customerRepo.GetByIdAsync(id);
@@ -47,7 +47,7 @@ namespace Gas_Station.Server.Controllers
         }
 
         [HttpPost]
-        public async Task Post(CustomerListViewModel customer)
+        public async Task Post(CustomerEditViewModel customer)
         {
             var newCustomer = new Customer()
             {
@@ -56,7 +56,7 @@ namespace Gas_Station.Server.Controllers
                 Surname = customer.Surname,
                 
             };
-            if (customer.CardNumber != null)
+            if (customer.CardNumber != String.Empty)
             {
                 newCustomer.CardNumber = customer.CardNumber;
             }

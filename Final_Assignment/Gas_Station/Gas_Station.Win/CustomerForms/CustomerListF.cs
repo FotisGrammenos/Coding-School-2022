@@ -20,7 +20,7 @@ namespace Gas_Station.Win.CustomerForms
         
         private HttpClient _client;
         private List<CustomerListViewModel> _customerList;
-        private CustomerListViewModel? _selectedCustomer;
+        private CustomerEditViewModel _selectedCustomer;
 
         public CustomersListF(HttpClient myhttpClient)
         {
@@ -67,7 +67,7 @@ namespace Gas_Station.Win.CustomerForms
             if (grvCustomerList.SelectedRows.Count != 1)
                 return;
 
-            _selectedCustomer = (CustomerListViewModel)grvCustomerList.SelectedRows[index:0].DataBoundItem;
+            _selectedCustomer = ConvertViewToEdit((CustomerListViewModel)grvCustomerList.SelectedRows[index:0].DataBoundItem);
             var frmCustomerList = new CustomerEditF(_client, _selectedCustomer);
             frmCustomerList.ShowDialog();
             await RefreshCustomerList();
@@ -78,7 +78,7 @@ namespace Gas_Station.Win.CustomerForms
             if (grvCustomerList.SelectedRows.Count != 1)
                 return;
 
-            _selectedCustomer = (CustomerListViewModel)grvCustomerList.SelectedRows[index: 0].DataBoundItem;
+            _selectedCustomer = ConvertViewToEdit((CustomerListViewModel)grvCustomerList.SelectedRows[index: 0].DataBoundItem);
             _client.DeleteAsync($"customer/{_selectedCustomer.Id}");
             await RefreshCustomerList();
         }
@@ -86,6 +86,17 @@ namespace Gas_Station.Win.CustomerForms
         private async void bntRefresh_Click(object sender, EventArgs e)
         {
             await RefreshCustomerList();
+        }
+
+        private CustomerEditViewModel ConvertViewToEdit(CustomerListViewModel model)
+        {
+            return new CustomerEditViewModel()
+            {
+               Id = model.Id,
+               CardNumber = model.CardNumber,
+               Name = model.Name,
+               Surname = model.Surname,
+            };
         }
     }
 }

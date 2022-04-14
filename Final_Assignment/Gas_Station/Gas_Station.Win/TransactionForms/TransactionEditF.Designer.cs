@@ -41,7 +41,6 @@
             this.grvTransactionLine = new System.Windows.Forms.DataGridView();
             this.bntDeleteTL = new System.Windows.Forms.Button();
             this.bntAddTL = new System.Windows.Forms.Button();
-            this.bntEditTL = new System.Windows.Forms.Button();
             this.bsTransaction = new System.Windows.Forms.BindingSource(this.components);
             this.ctrEmployee = new System.Windows.Forms.ComboBox();
             this.bsTransactionLine = new System.Windows.Forms.BindingSource(this.components);
@@ -133,6 +132,8 @@
             // 
             this.grvTransactionLine.AllowUserToAddRows = false;
             this.grvTransactionLine.AllowUserToDeleteRows = false;
+            this.grvTransactionLine.AllowUserToOrderColumns = true;
+            this.grvTransactionLine.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grvTransactionLine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grvTransactionLine.Location = new System.Drawing.Point(26, 213);
             this.grvTransactionLine.Name = "grvTransactionLine";
@@ -153,23 +154,13 @@
             // 
             // bntAddTL
             // 
-            this.bntAddTL.Location = new System.Drawing.Point(513, 186);
+            this.bntAddTL.Location = new System.Drawing.Point(607, 186);
             this.bntAddTL.Name = "bntAddTL";
             this.bntAddTL.Size = new System.Drawing.Size(88, 21);
             this.bntAddTL.TabIndex = 21;
             this.bntAddTL.Text = "Add";
             this.bntAddTL.UseVisualStyleBackColor = true;
             this.bntAddTL.Click += new System.EventHandler(this.bntAddTL_Click);
-            // 
-            // bntEditTL
-            // 
-            this.bntEditTL.Location = new System.Drawing.Point(607, 186);
-            this.bntEditTL.Name = "bntEditTL";
-            this.bntEditTL.Size = new System.Drawing.Size(88, 21);
-            this.bntEditTL.TabIndex = 23;
-            this.bntEditTL.Text = "Edit";
-            this.bntEditTL.UseVisualStyleBackColor = true;
-            this.bntEditTL.Click += new System.EventHandler(this.bntEditTL_Click);
             // 
             // ctrEmployee
             // 
@@ -196,7 +187,6 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.bntRefresh);
             this.Controls.Add(this.ctrEmployee);
-            this.Controls.Add(this.bntEditTL);
             this.Controls.Add(this.bntDeleteTL);
             this.Controls.Add(this.bntAddTL);
             this.Controls.Add(this.grvTransactionLine);
@@ -234,7 +224,6 @@
         private DataGridView grvTransactionLine;
         private Button bntDeleteTL;
         private Button bntAddTL;
-        private Button bntEditTL;
         private BindingSource bsTransaction;
         private ComboBox ctrEmployee;
         private BindingSource bsEmployees;

@@ -14,7 +14,7 @@ namespace Gas_Station.Win.CustomerForms
 {
     public partial class CustomerEditF : Form
     {
-        private CustomerListViewModel _customer;
+        private CustomerEditViewModel _customer;
         private HttpClient _client;
 
         public CustomerEditF(HttpClient client)
@@ -23,7 +23,7 @@ namespace Gas_Station.Win.CustomerForms
             _client = client;
         }
 
-        public CustomerEditF(HttpClient client, CustomerListViewModel customer): this(client)
+        public CustomerEditF(HttpClient client, CustomerEditViewModel customer): this(client)
         {
             _customer = customer;
         }
@@ -32,7 +32,7 @@ namespace Gas_Station.Win.CustomerForms
         {
             if (_customer == null)
             {
-                _customer = new CustomerListViewModel();
+                _customer = new CustomerEditViewModel();
             }
            bsCustomer.DataSource = _customer;
 
