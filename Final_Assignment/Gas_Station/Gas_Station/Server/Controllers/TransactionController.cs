@@ -11,13 +11,11 @@ namespace Gas_Station.Server.Controllers
     public class TransactionController : ControllerBase
     {
         private readonly IEntityRepo<Transaction> _transactionRepo;
-        private readonly IEntityRepo<Item> _itemRepo;
 
 
-        public TransactionController(IEntityRepo<Transaction> transactionRepo, IEntityRepo<Item> transactionHandler)
+        public TransactionController(IEntityRepo<Transaction> transactionRepo)
         {
             _transactionRepo = transactionRepo;
-            _itemRepo = transactionHandler;
         }
 
         [HttpGet]
@@ -66,7 +64,6 @@ namespace Gas_Station.Server.Controllers
                     TotalValue = x.TotalValue,
                     Quentity = x.Quantity
                 }).ToList();
-                //CovertTransactionLineToViewModel(getTransaction, existing);
             }
             return getTransaction;
         }
@@ -94,7 +91,6 @@ namespace Gas_Station.Server.Controllers
                 TotalValue = x.TotalValue,
                 Quantity = x.Quentity
             }).ToList();
-            //CovertViewModelLineToTransactionLine(model,newTransaction)
 
             await _transactionRepo.AddAsync(newTransaction);
         }
@@ -120,7 +116,6 @@ namespace Gas_Station.Server.Controllers
                 TotalValue = x.TotalValue,
                 Quantity = x.Quentity
             }).ToList();
-            //CovertViewModelLineToTransactionLine(transaction, transactionUpdate);
 
 
             await _transactionRepo.UpdateAsync(transactionUpdate.ID, transactionUpdate);

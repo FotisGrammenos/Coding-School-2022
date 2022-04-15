@@ -48,7 +48,11 @@ namespace Gas_Station.Win.CustomerForms
         private async void bntSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtName.Text) || string.IsNullOrWhiteSpace(txtSurname.Text))
+            {
+                MessageBox.Show("Invalid Inputs", "Error", MessageBoxButtons.OKCancel);
                 return;
+            }
+              
 
             if(_customer.Id == Guid.Empty)
             {

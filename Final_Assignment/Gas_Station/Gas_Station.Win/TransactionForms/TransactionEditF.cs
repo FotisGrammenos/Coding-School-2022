@@ -63,8 +63,6 @@ namespace Gas_Station.Win.TransactionForms
             txtCustomerName.DataBindings.Add(new Binding("Text", bsTransaction, "CustomerFullName", true));
             txtTotalValue.DataBindings.Add(new Binding("Text", bsTransaction, "TotalValue", true));
             
-
-            //TODO elen3e an ta bindings einai swsta
             RefreshEmployeeList();
             ctrEmployee.DataBindings.Add(new Binding("Text", bsTransaction, "EmployeeFullName", true));
 
@@ -114,6 +112,7 @@ namespace Gas_Station.Win.TransactionForms
             await LoadFormServerEmployeeList();
             RefreshEmployeeList();
             RefreshGridViewTransactionList();
+            MessageBox.Show("Τhe list of Employees has been updated ", "Help Caption", MessageBoxButtons.OK);
         }
 
         private async void bntSave_Click(object sender, EventArgs e)
@@ -121,8 +120,12 @@ namespace Gas_Station.Win.TransactionForms
             if (string.IsNullOrWhiteSpace(txtCustomerName.Text) ||
                 string.IsNullOrWhiteSpace(ctrEmployee.Text) ||
                 string.IsNullOrWhiteSpace(ctrPayMethod.Text))
+            {
+                MessageBox.Show("Invalid Inputs", "Error", MessageBoxButtons.OKCancel);
                 return;
-            //TODO Bgale ena minima lathous
+            }
+               
+            
             HttpResponseMessage response;
             _transaction.EmployeeID = LoadSelectedEmployee(ctrEmployee.SelectedIndex).Id;
             if (_transaction.ID == Guid.Empty)
@@ -152,7 +155,10 @@ namespace Gas_Station.Win.TransactionForms
         private async void bntDeleteTL_Click(object sender, EventArgs e)
         {
             if (grvTransactionLine.SelectedRows.Count != 1)
+            { 
+                MessageBox.Show("Make sure that you select a TransactionLine to Delete it", "Error", MessageBoxButtons.OKCancel);
                 return;
+            }
 
             _selectedTransactionLine = (TransactionLineEditViewModel)grvTransactionLine.SelectedRows[index: 0].DataBoundItem;
             _transaction.TransactionLineList.Remove(_selectedTransactionLine);

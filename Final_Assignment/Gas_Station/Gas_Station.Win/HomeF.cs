@@ -11,8 +11,7 @@ namespace Gas_Station.Win
 {
     public partial class HomeF : Form
     {
-        private readonly IEntityRepo<Customer> _customerRepo;
-
+       
         private HttpClient _httpClient;
         private TransactionHandler _handler;
         public HomeF(TransactionHandler handler)

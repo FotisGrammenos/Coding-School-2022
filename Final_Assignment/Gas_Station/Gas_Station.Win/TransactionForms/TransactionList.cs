@@ -67,7 +67,10 @@ namespace Gas_Station.Win.TransactionFomrs
         private async void btnEditTransaction_Click(object sender, EventArgs e)
         {
             if (grvTransactionList.SelectedRows.Count != 1)
+            {
+                MessageBox.Show("Make sure that you select a Transaction to Edit it", "Error", MessageBoxButtons.OKCancel);
                 return;
+            }
 
             var tmpTransaction = (TransactionListViewModel)grvTransactionList.SelectedRows[index: 0].DataBoundItem;
             _selectedTransaction =await _client.GetFromJsonAsync<TransactionEditViewModel>($"transaction/{tmpTransaction.Id}");
@@ -79,7 +82,10 @@ namespace Gas_Station.Win.TransactionFomrs
         private async void btnDeleteTransaction_Click(object sender, EventArgs e)
         {
             if (grvTransactionList.SelectedRows.Count != 1)
+            {
+                MessageBox.Show("Make sure that you select a Transaction to Delete it", "Error", MessageBoxButtons.OKCancel);
                 return;
+            }
 
             var tmpTransaction = (TransactionListViewModel)grvTransactionList.SelectedRows[index: 0].DataBoundItem;
             _client.DeleteAsync($"transaction/{tmpTransaction.Id}");

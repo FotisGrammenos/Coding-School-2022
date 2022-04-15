@@ -64,7 +64,10 @@ namespace Gas_Station.Win.ItemForms
         private async void btnEditItem_Click(object sender, EventArgs e)
         {
             if (grvItemList.SelectedRows.Count != 1)
+            {
+                MessageBox.Show("Make sure that you select a Item to Edit it", "Error", MessageBoxButtons.OKCancel);
                 return;
+            }
 
             _selectedItem = (ItemListViewModel)grvItemList.SelectedRows[index: 0].DataBoundItem;
             var frmCustomerList = new ItemEditF(_client, _selectedItem);
@@ -75,7 +78,10 @@ namespace Gas_Station.Win.ItemForms
         private async void btnDeleteItem_Click(object sender, EventArgs e)
         {
             if (grvItemList.SelectedRows.Count != 1)
+            {
+                MessageBox.Show("Make sure that you select a Item to Delete it", "Error", MessageBoxButtons.OKCancel);
                 return;
+            }
 
             _selectedItem = (ItemListViewModel)grvItemList.SelectedRows[index: 0].DataBoundItem;
             _client.DeleteAsync($"item/{_selectedItem.Id}");

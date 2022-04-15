@@ -59,7 +59,10 @@ namespace Gas_Station.Win.ItemForms
             if (string.IsNullOrWhiteSpace(txtDescription.Text) || 
                 string.IsNullOrWhiteSpace(txtCost.Text) || 
                 string.IsNullOrWhiteSpace(txtPrice.Text))
+            {
+                MessageBox.Show("Invalid Inputs", "Error", MessageBoxButtons.OKCancel);
                 return;
+            }
 
             if (_item.Id == Guid.Empty)
             {

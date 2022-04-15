@@ -50,9 +50,6 @@ namespace Gas_Station.Win.TransactionForms
                 var frameNewCustomer = new CustomerForms.CustomerEditF(_client, newCustomer);
                 frameNewCustomer.ShowDialog();
 
-                //TODO piase to error otan sou kanei close xoris save to customerAdd
-                //Newcustomer Den exei pliroforia gia to poios eiani
-
                 customers = await _client.GetFromJsonAsync<List<CustomerListViewModel>>("customer");
                 existingCustomer = customers.SingleOrDefault(c => c.CardNumber.Equals(_cardNumber));
                 

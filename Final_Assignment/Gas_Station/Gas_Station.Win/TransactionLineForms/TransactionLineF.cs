@@ -79,14 +79,18 @@ namespace Gas_Station.Win.TransactionLineForms
         {
             await LoadItemFromServer();
             RefreshItemList();
-            //TODO na balw se ola ta refresh ena Message oti egine refresh i lista
+            MessageBox.Show("Τhe list of items has been updated ", "Help Caption", MessageBoxButtons.OK);
         }
 
         private async void bntSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(ctrItem.Text) || ctrQuantity.Value <= 0)
+            {
+                MessageBox.Show("Invalid Inputs", "Error", MessageBoxButtons.OKCancel);
                 return;
-            if(_transactionLine.ID== Guid.Empty)
+            }
+
+            if (_transactionLine.ID== Guid.Empty)
             {
                 //-----business Rule-------------------------------------------------//
                 _transactionLine.ItemPrice = _items.ElementAt(ctrItem.SelectedIndex).Price;
@@ -108,8 +112,6 @@ namespace Gas_Station.Win.TransactionLineForms
             {
                var item=_transaction.TransactionLineList.FirstOrDefault(tl => tl.ID == _transactionLine.ID);
                 item = ConvertToTransactionLine(_transactionLine);
-                //_transaction.TransactionLineList.Find(ConvertToTransactionLine(_transactionLine));
-                // var response = await _client.PutAsJsonAsync("transactionline", _transactionLine);
             }
             Close();
         }

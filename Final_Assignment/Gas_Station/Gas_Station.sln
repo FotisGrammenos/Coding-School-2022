@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gas_Station.EF", "Gas_Stati
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gas_Station.Win", "Gas_Station.Win\Gas_Station.Win.csproj", "{D8FB5CD0-8503-4386-9E26-363D118A5879}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Handlers", "Handlers\Handlers.csproj", "{C5B0A117-2F65-4B5F-83A6-89DA581213F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Handlers", "Handlers\Handlers.csproj", "{C5B0A117-2F65-4B5F-83A6-89DA581213F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

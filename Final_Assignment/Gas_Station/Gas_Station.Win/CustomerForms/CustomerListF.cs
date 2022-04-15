@@ -65,7 +65,10 @@ namespace Gas_Station.Win.CustomerForms
         private async void btnEditCustomer_Click(object sender, EventArgs e)
         {
             if (grvCustomerList.SelectedRows.Count != 1)
+            {
+                MessageBox.Show("Make sure that you select a Customer to Edit it", "Error", MessageBoxButtons.OKCancel);
                 return;
+            }
 
             _selectedCustomer = ConvertViewToEdit((CustomerListViewModel)grvCustomerList.SelectedRows[index:0].DataBoundItem);
             var frmCustomerList = new CustomerEditF(_client, _selectedCustomer);
@@ -76,7 +79,10 @@ namespace Gas_Station.Win.CustomerForms
         private async void btnDeleteCustomer_Click(object sender, EventArgs e)
         {
             if (grvCustomerList.SelectedRows.Count != 1)
+            {
+                MessageBox.Show("Make sure that you select a Transaction to Delete it", "Error", MessageBoxButtons.OKCancel);
                 return;
+            }
 
             _selectedCustomer = ConvertViewToEdit((CustomerListViewModel)grvCustomerList.SelectedRows[index: 0].DataBoundItem);
             _client.DeleteAsync($"customer/{_selectedCustomer.Id}");
