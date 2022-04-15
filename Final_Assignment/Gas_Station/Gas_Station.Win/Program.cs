@@ -22,8 +22,6 @@ namespace Gas_Station.Win
           
             var myHandler = new TransactionHandler();
 
-            //AddScopeRepos(services);
-
             //using var serviceProvider = services.BuildServiceProvider();
             //var mainForm = serviceProvider.GetRequiredService<HomeF>();
             Application.Run(new HomeF(myHandler));

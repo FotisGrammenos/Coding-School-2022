@@ -165,7 +165,7 @@ namespace Gas_Station.Win.TransactionForms
             RefreshGridViewTransactionList();
         }
 
-        private async void RefreshGridViewTransactionList()
+        private void RefreshGridViewTransactionList()
         {
             grvTransactionLine.DataSource = null;
 

@@ -21,6 +21,9 @@ namespace Gas_Station.EF.Context
 
         public DbSet<TransactionLine> TransactionsLine { get; set; }
 
+        public DbSet<Users> Users { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

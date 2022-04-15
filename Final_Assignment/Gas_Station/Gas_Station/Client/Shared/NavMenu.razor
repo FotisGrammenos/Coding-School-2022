@@ -1,4 +1,8 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@using static Model.Enums
+@inject IJSRuntime jsRuntime
+@inject NavigationManager navigationManager
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">Dinoco</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
@@ -9,28 +13,65 @@
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="customerlist">Customer</NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="itemlist"> Item </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="employeelist">Employee</NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="monthlyledger">Ledger</NavLink>
-        </div>
+        @if (Role == (int)EmployeeType.Manager || Role == (int)EmployeeType.Cashier)
+        {
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="customerlist">Customer</NavLink>
+            </div>
+        }
+        @if(Role == (int)EmployeeType.Manager || Role == (int)EmployeeType.Staff)
+        {
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="itemlist"> Item </NavLink>
+            </div>    
+        }
+        @if(Role == (int)EmployeeType.Manager)
+        {
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="employeelist">Employee</NavLink>
+            </div>
+        }
+        @if(Role == (int)EmployeeType.Manager)
+        {
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="monthlyledger">Ledger</NavLink>
+            </div>
+        }
+        @if(isOn)
+        {
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" @onclick="Logout">
+                    <span aria-hidden="true"></span> Logout
+                </NavLink>
+            </div>
+        }
     </nav>
 </div>
 
 @code {
     private bool collapseNavMenu = true;
+    private int Role { get; set; } = -1;
+    private bool isOn { get; set; }
 
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        isOn = Convert.ToBoolean(await jsRuntime.InvokeAsync<string>("localStorage.getItem", "isAuth"));
+        if (!isOn)
+            return;
+        Role = Convert.ToInt32(await jsRuntime.InvokeAsync<string>("localStorage.getItem", "role"));
+    }
+
+    protected async void Logout()
+    {
+        await jsRuntime.InvokeAsync<string>("localStorage.setItem", "isAuth", false);
+        await jsRuntime.InvokeAsync<string>("localStorage.setItem", "role", -1);
+        navigationManager.NavigateTo("/login", true);
     }
 }

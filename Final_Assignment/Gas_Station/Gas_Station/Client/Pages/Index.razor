@@ -1,4 +1,6 @@
 ﻿@page "/"
+@inject IJSRuntime jsRuntime
+@inject NavigationManager navManager
 
 <PageTitle>Index</PageTitle>
 
@@ -7,3 +9,14 @@
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+@code{
+    private bool isOn = false;
+
+    protected async override Task OnInitializedAsync()
+    {
+        isOn = Convert.ToBoolean(await jsRuntime.InvokeAsync<string>("localStorage.getItem", "isAuth"));
+        if(!isOn)
+            navManager.NavigateTo("/login", true);
+    }
+}

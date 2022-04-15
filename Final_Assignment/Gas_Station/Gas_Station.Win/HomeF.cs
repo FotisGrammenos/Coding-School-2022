@@ -1,5 +1,6 @@
 
 using Gas_Station.EF.Repos;
+using Gas_Station.Shared;
 using Gas_Station.Win.CustomerForms;
 using Gas_Station.Win.ItemForms;
 using Gas_Station.Win.TransactionFomrs;
@@ -14,6 +15,8 @@ namespace Gas_Station.Win
        
         private HttpClient _httpClient;
         private TransactionHandler _handler;
+        private UserViewModel _user; 
+        
         public HomeF(TransactionHandler handler)
         {
             InitializeComponent();
@@ -23,6 +26,9 @@ namespace Gas_Station.Win
             _handler= handler;
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri("https://localhost:7097/");
+
+            LogIn();
+            
         }
 
         private void customersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -41,6 +47,52 @@ namespace Gas_Station.Win
         {
             var frmCustomerList = new TransactionList(_httpClient,_handler);
             frmCustomerList.ShowDialog();
+        }
+
+        private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LogIn();
+        }
+
+        private void LogIn()
+        {
+            ResetButtons();
+            this.Visible = false;
+            _user = new();
+
+            var Loginform = new LoginForm(_httpClient);
+            Loginform.ShowDialog();
+            _user = Loginform._user;
+
+            if(Loginform._user == null)
+            {
+                this.Close();
+                return;
+            }
+                
+            this.Visible = true;
+            SetRole();
+
+        }
+
+        private void SetRole()
+        {
+            if (_user.Role == Enums.EmployeeType.Cashier)
+            {
+                itemsToolStripMenuItem.Visible = false;
+            }
+            else if(_user.Role == Enums.EmployeeType.Staff)
+            {
+                customersToolStripMenuItem.Visible = false;
+                transactionsToolStripMenuItem.Visible=false;
+            }
+        }
+
+        private void ResetButtons()
+        {
+            itemsToolStripMenuItem.Visible = true;
+            customersToolStripMenuItem.Visible = true;
+            transactionsToolStripMenuItem.Visible = true;
         }
     }
 }
