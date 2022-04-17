@@ -35,6 +35,7 @@
             // 
             // bntContiue
             // 
+            this.bntContiue.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.bntContiue.Location = new System.Drawing.Point(98, 125);
             this.bntContiue.Name = "bntContiue";
             this.bntContiue.Size = new System.Drawing.Size(134, 36);
@@ -45,6 +46,9 @@
             // 
             // txtName
             // 
+            this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtName.Location = new System.Drawing.Point(98, 51);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(216, 23);
@@ -52,6 +56,9 @@
             // 
             // lblName
             // 
+            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblName.AutoSize = true;
             this.lblName.Location = new System.Drawing.Point(16, 59);
             this.lblName.Name = "lblName";

@@ -43,6 +43,7 @@
             // 
             // bntClose
             // 
+            this.bntClose.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.bntClose.Location = new System.Drawing.Point(397, 125);
             this.bntClose.Name = "bntClose";
             this.bntClose.Size = new System.Drawing.Size(134, 36);
@@ -53,6 +54,7 @@
             // 
             // bntSave
             // 
+            this.bntSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.bntSave.Location = new System.Drawing.Point(244, 125);
             this.bntSave.Name = "bntSave";
             this.bntSave.Size = new System.Drawing.Size(134, 36);
@@ -63,6 +65,9 @@
             // 
             // lblQuantity
             // 
+            this.lblQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblQuantity.AutoSize = true;
             this.lblQuantity.Location = new System.Drawing.Point(46, 79);
             this.lblQuantity.Name = "lblQuantity";
@@ -72,6 +77,9 @@
             // 
             // lblItem
             // 
+            this.lblItem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblItem.AutoSize = true;
             this.lblItem.Location = new System.Drawing.Point(46, 37);
             this.lblItem.Name = "lblItem";
@@ -81,6 +89,9 @@
             // 
             // ctrItem
             // 
+            this.ctrItem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrItem.FormattingEnabled = true;
             this.ctrItem.Location = new System.Drawing.Point(123, 29);
             this.ctrItem.Name = "ctrItem";
@@ -89,6 +100,9 @@
             // 
             // ctrQuantity
             // 
+            this.ctrQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrQuantity.Location = new System.Drawing.Point(123, 71);
             this.ctrQuantity.Name = "ctrQuantity";
             this.ctrQuantity.Size = new System.Drawing.Size(177, 23);
@@ -96,6 +110,7 @@
             // 
             // bntRefresh
             // 
+            this.bntRefresh.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.bntRefresh.Location = new System.Drawing.Point(12, 125);
             this.bntRefresh.Name = "bntRefresh";
             this.bntRefresh.Size = new System.Drawing.Size(134, 36);

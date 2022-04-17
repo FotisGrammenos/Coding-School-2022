@@ -38,6 +38,7 @@
             // 
             // bntRefresh
             // 
+            this.bntRefresh.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.bntRefresh.Location = new System.Drawing.Point(12, 407);
             this.bntRefresh.Name = "bntRefresh";
             this.bntRefresh.Size = new System.Drawing.Size(154, 31);
@@ -48,6 +49,7 @@
             // 
             // btnDeleteCustomer
             // 
+            this.btnDeleteCustomer.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnDeleteCustomer.Location = new System.Drawing.Point(634, 407);
             this.btnDeleteCustomer.Name = "btnDeleteCustomer";
             this.btnDeleteCustomer.Size = new System.Drawing.Size(154, 31);
@@ -58,6 +60,7 @@
             // 
             // btnEditCustomer
             // 
+            this.btnEditCustomer.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnEditCustomer.Location = new System.Drawing.Point(474, 407);
             this.btnEditCustomer.Name = "btnEditCustomer";
             this.btnEditCustomer.Size = new System.Drawing.Size(154, 31);
@@ -68,6 +71,7 @@
             // 
             // btnAddCustomer
             // 
+            this.btnAddCustomer.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnAddCustomer.Location = new System.Drawing.Point(314, 407);
             this.btnAddCustomer.Name = "btnAddCustomer";
             this.btnAddCustomer.Size = new System.Drawing.Size(154, 31);
@@ -78,8 +82,7 @@
             // 
             // grvItemList
             // 
-            this.grvItemList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.grvItemList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grvItemList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grvItemList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;

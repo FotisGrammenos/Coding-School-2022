@@ -41,6 +41,9 @@
             // 
             // lblName
             // 
+            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblName.AutoSize = true;
             this.lblName.Location = new System.Drawing.Point(44, 41);
             this.lblName.Name = "lblName";
@@ -50,6 +53,9 @@
             // 
             // lblSurName
             // 
+            this.lblSurName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSurName.AutoSize = true;
             this.lblSurName.Location = new System.Drawing.Point(44, 83);
             this.lblSurName.Name = "lblSurName";
@@ -59,6 +65,9 @@
             // 
             // txtName
             // 
+            this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtName.Location = new System.Drawing.Point(106, 33);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(175, 23);
@@ -66,6 +75,9 @@
             // 
             // txtSurname
             // 
+            this.txtSurname.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSurname.Location = new System.Drawing.Point(104, 75);
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.Size = new System.Drawing.Size(177, 23);
@@ -73,6 +85,7 @@
             // 
             // bntSave
             // 
+            this.bntSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.bntSave.Location = new System.Drawing.Point(12, 125);
             this.bntSave.Name = "bntSave";
             this.bntSave.Size = new System.Drawing.Size(134, 36);
@@ -83,6 +96,7 @@
             // 
             // bntClose
             // 
+            this.bntClose.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.bntClose.Location = new System.Drawing.Point(176, 125);
             this.bntClose.Name = "bntClose";
             this.bntClose.Size = new System.Drawing.Size(134, 36);

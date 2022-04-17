@@ -52,6 +52,7 @@
             // 
             // bntClose
             // 
+            this.bntClose.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.bntClose.Location = new System.Drawing.Point(654, 402);
             this.bntClose.Name = "bntClose";
             this.bntClose.Size = new System.Drawing.Size(134, 36);
@@ -62,6 +63,7 @@
             // 
             // bntSave
             // 
+            this.bntSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.bntSave.Location = new System.Drawing.Point(498, 402);
             this.bntSave.Name = "bntSave";
             this.bntSave.Size = new System.Drawing.Size(134, 36);
@@ -72,6 +74,8 @@
             // 
             // lblSurName
             // 
+            this.lblSurName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSurName.AutoSize = true;
             this.lblSurName.Location = new System.Drawing.Point(26, 92);
             this.lblSurName.Name = "lblSurName";
@@ -81,6 +85,8 @@
             // 
             // lblName
             // 
+            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblName.AutoSize = true;
             this.lblName.Location = new System.Drawing.Point(26, 50);
             this.lblName.Name = "lblName";
@@ -90,6 +96,8 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(26, 176);
             this.label2.Name = "label2";
@@ -99,6 +107,8 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(26, 134);
             this.label3.Name = "label3";
@@ -108,6 +118,8 @@
             // 
             // txtCustomerName
             // 
+            this.txtCustomerName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCustomerName.Location = new System.Drawing.Point(135, 41);
             this.txtCustomerName.Name = "txtCustomerName";
             this.txtCustomerName.Size = new System.Drawing.Size(228, 23);
@@ -115,6 +127,8 @@
             // 
             // txtTotalValue
             // 
+            this.txtTotalValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTotalValue.Location = new System.Drawing.Point(135, 167);
             this.txtTotalValue.Name = "txtTotalValue";
             this.txtTotalValue.Size = new System.Drawing.Size(114, 23);
@@ -122,6 +136,8 @@
             // 
             // ctrPayMethod
             // 
+            this.ctrPayMethod.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrPayMethod.FormattingEnabled = true;
             this.ctrPayMethod.Location = new System.Drawing.Point(135, 125);
             this.ctrPayMethod.Name = "ctrPayMethod";
@@ -133,6 +149,8 @@
             this.grvTransactionLine.AllowUserToAddRows = false;
             this.grvTransactionLine.AllowUserToDeleteRows = false;
             this.grvTransactionLine.AllowUserToOrderColumns = true;
+            this.grvTransactionLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grvTransactionLine.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grvTransactionLine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grvTransactionLine.Location = new System.Drawing.Point(26, 213);
@@ -144,6 +162,7 @@
             // 
             // bntDeleteTL
             // 
+            this.bntDeleteTL.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.bntDeleteTL.Location = new System.Drawing.Point(701, 186);
             this.bntDeleteTL.Name = "bntDeleteTL";
             this.bntDeleteTL.Size = new System.Drawing.Size(88, 21);
@@ -154,6 +173,7 @@
             // 
             // bntAddTL
             // 
+            this.bntAddTL.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.bntAddTL.Location = new System.Drawing.Point(607, 186);
             this.bntAddTL.Name = "bntAddTL";
             this.bntAddTL.Size = new System.Drawing.Size(88, 21);
@@ -164,6 +184,8 @@
             // 
             // ctrEmployee
             // 
+            this.ctrEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrEmployee.FormattingEnabled = true;
             this.ctrEmployee.Location = new System.Drawing.Point(135, 84);
             this.ctrEmployee.Name = "ctrEmployee";
@@ -172,6 +194,7 @@
             // 
             // bntRefresh
             // 
+            this.bntRefresh.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.bntRefresh.Location = new System.Drawing.Point(26, 402);
             this.bntRefresh.Name = "bntRefresh";
             this.bntRefresh.Size = new System.Drawing.Size(134, 36);

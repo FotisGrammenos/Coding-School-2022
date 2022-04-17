@@ -40,6 +40,7 @@
             // 
             // bntSave
             // 
+            this.bntSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.bntSave.Location = new System.Drawing.Point(104, 113);
             this.bntSave.Name = "bntSave";
             this.bntSave.Size = new System.Drawing.Size(134, 36);
@@ -50,36 +51,52 @@
             // 
             // txtName
             // 
+            this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtName.Location = new System.Drawing.Point(106, 19);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(177, 23);
             this.txtName.TabIndex = 7;
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // lblSurName
             // 
+            this.lblSurName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSurName.AutoSize = true;
             this.lblSurName.Location = new System.Drawing.Point(44, 69);
             this.lblSurName.Name = "lblSurName";
             this.lblSurName.Size = new System.Drawing.Size(57, 15);
             this.lblSurName.TabIndex = 6;
             this.lblSurName.Text = "Password";
+            this.lblSurName.Click += new System.EventHandler(this.lblSurName_Click);
             // 
             // lblName
             // 
+            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblName.AutoSize = true;
             this.lblName.Location = new System.Drawing.Point(44, 27);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(62, 15);
             this.lblName.TabIndex = 5;
             this.lblName.Text = "UserName";
+            this.lblName.Click += new System.EventHandler(this.lblName_Click);
             // 
             // txtPassword
             // 
+            this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPassword.Location = new System.Drawing.Point(106, 61);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '#';
             this.txtPassword.Size = new System.Drawing.Size(177, 23);
             this.txtPassword.TabIndex = 8;
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // LoginForm
             // 

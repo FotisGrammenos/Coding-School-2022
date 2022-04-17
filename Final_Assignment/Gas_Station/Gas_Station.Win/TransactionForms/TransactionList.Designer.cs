@@ -38,6 +38,7 @@
             // 
             // bntRefresh
             // 
+            this.bntRefresh.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.bntRefresh.Location = new System.Drawing.Point(12, 407);
             this.bntRefresh.Name = "bntRefresh";
             this.bntRefresh.Size = new System.Drawing.Size(154, 31);
@@ -48,6 +49,7 @@
             // 
             // btnDeleteTransaction
             // 
+            this.btnDeleteTransaction.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnDeleteTransaction.Location = new System.Drawing.Point(634, 407);
             this.btnDeleteTransaction.Name = "btnDeleteTransaction";
             this.btnDeleteTransaction.Size = new System.Drawing.Size(154, 31);
@@ -58,6 +60,7 @@
             // 
             // btnEditTransaction
             // 
+            this.btnEditTransaction.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnEditTransaction.Location = new System.Drawing.Point(474, 407);
             this.btnEditTransaction.Name = "btnEditTransaction";
             this.btnEditTransaction.Size = new System.Drawing.Size(154, 31);
@@ -68,6 +71,7 @@
             // 
             // btnAddTransaction
             // 
+            this.btnAddTransaction.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnAddTransaction.Location = new System.Drawing.Point(314, 407);
             this.btnAddTransaction.Name = "btnAddTransaction";
             this.btnAddTransaction.Size = new System.Drawing.Size(154, 31);
@@ -78,6 +82,8 @@
             // 
             // grvTransactionList
             // 
+            this.grvTransactionList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grvTransactionList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grvTransactionList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grvTransactionList.Location = new System.Drawing.Point(12, 12);

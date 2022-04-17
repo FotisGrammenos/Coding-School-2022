@@ -47,6 +47,9 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(44, 41);
             this.label1.Name = "label1";
@@ -56,6 +59,9 @@
             // 
             // lblType
             // 
+            this.lblType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblType.AutoSize = true;
             this.lblType.Location = new System.Drawing.Point(44, 83);
             this.lblType.Name = "lblType";
@@ -65,6 +71,9 @@
             // 
             // lblCost
             // 
+            this.lblCost.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCost.AutoSize = true;
             this.lblCost.Location = new System.Drawing.Point(44, 125);
             this.lblCost.Name = "lblCost";
@@ -74,6 +83,9 @@
             // 
             // lblPrice
             // 
+            this.lblPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPrice.AutoSize = true;
             this.lblPrice.Location = new System.Drawing.Point(44, 167);
             this.lblPrice.Name = "lblPrice";
@@ -83,6 +95,9 @@
             // 
             // txtDescription
             // 
+            this.txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDescription.Location = new System.Drawing.Point(117, 33);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(175, 23);
@@ -90,6 +105,9 @@
             // 
             // comboItemType
             // 
+            this.comboItemType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboItemType.FormattingEnabled = true;
             this.comboItemType.Location = new System.Drawing.Point(117, 75);
             this.comboItemType.Name = "comboItemType";
@@ -98,6 +116,7 @@
             // 
             // bntClose
             // 
+            this.bntClose.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.bntClose.Location = new System.Drawing.Point(185, 216);
             this.bntClose.Name = "bntClose";
             this.bntClose.Size = new System.Drawing.Size(134, 36);
@@ -107,6 +126,7 @@
             // 
             // bntSave
             // 
+            this.bntSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.bntSave.Location = new System.Drawing.Point(12, 216);
             this.bntSave.Name = "bntSave";
             this.bntSave.Size = new System.Drawing.Size(134, 36);
@@ -117,6 +137,9 @@
             // 
             // txtCost
             // 
+            this.txtCost.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCost.DecimalPlaces = 3;
             this.txtCost.Increment = new decimal(new int[] {
             0,
@@ -135,6 +158,9 @@
             // 
             // txtPrice
             // 
+            this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPrice.DecimalPlaces = 3;
             this.txtPrice.Increment = new decimal(new int[] {
             0,
